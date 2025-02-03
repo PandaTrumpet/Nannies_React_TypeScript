@@ -1,0 +1,87 @@
+.userLoggedCont {
+    display: none;
+}
+
+.navCont {
+    padding-left: 127px;
+    padding-right: 127px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background: #0957c3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.logoContainer {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 117%;
+    letter-spacing: -0.02em;
+    color: #fbfbfb;
+}
+
+.registerCont {
+    display: flex;
+    gap: 8px;
+}
+
+.loginBtn,
+.registerBtn {
+    border: 1px solid rgba(251, 251, 251, 0.4);
+    border-radius: 30px;
+    padding: 14px 39px;
+    width: 124px;
+    height: 48px;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0957c3;
+
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 125%;
+    letter-spacing: -0.01em;
+    color: #fbfbfb;
+
+}
+
+.registerBtn {
+    width: 168px;
+}
+
+.navMenuList {
+    display: flex;
+    gap: 40px;
+}
+
+.navMenuList .link {
+
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 125%;
+    letter-spacing: -0.01em;
+    color: #fbfbfb;
+    position: relative;
+}
+
+.link::before {
+    position: absolute;
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #fff;
+    top: 150%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.active.link::before {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
