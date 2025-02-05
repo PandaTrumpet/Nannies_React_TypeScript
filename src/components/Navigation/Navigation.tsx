@@ -2,11 +2,18 @@ import { Link, useLocation } from "react-router-dom";
 import css from "./Navigation.module.css";
 import { NavLink } from "react-router-dom";
 import clsx from "clsx";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
+import { openModalWindow } from "../../redux/modal/slice";
+import SimpleModal from "../SimpleModal/SimpleModal";
+import Registration from "../Registration/Registration";
+import Login from "../Login/Login";
 interface isActiveProps {
   isActive: boolean;
 }
 const Navigation = () => {
+  const [registerBtn, setRegisterBtn] = useState<string>("");
+  const dispatch = useDispatch();
   const buildLinkClass = ({ isActive }: isActiveProps) => {
     return clsx(css.link, isActive && css.active);
   };
@@ -41,13 +48,38 @@ const Navigation = () => {
 
         <ul className={css.registerCont}>
           <li>
-            <button className={css.loginBtn}>Log In</button>
+            <button
+              className={css.loginBtn}
+              onClick={() => {
+                dispatch(openModalWindow());
+                setRegisterBtn("login");
+              }}
+            >
+              Log In
+            </button>
           </li>
           <li>
-            <button className={css.registerBtn}>Registration</button>
+            <button
+              className={css.registerBtn}
+              onClick={() => {
+                dispatch(openModalWindow());
+                setRegisterBtn("register");
+              }}
+            >
+              Registration
+            </button>
           </li>
         </ul>
       </div>
+      {registerBtn === "login" ? (
+        <SimpleModal>
+          <Login />
+        </SimpleModal>
+      ) : (
+        <SimpleModal>
+          <Registration />
+        </SimpleModal>
+      )}
 
       <div className={css.userLoggedCont}>
         <div>
