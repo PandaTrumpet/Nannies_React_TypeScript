@@ -4,15 +4,16 @@ import * as yup from "yup";
 import css from "./Login.module.css";
 import { useDispatch } from "react-redux";
 import { closeModalWindow } from "../../redux/modal/slice";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase";
+
+import { loginUser } from "../../redux/auth/operation";
+import { AppDispatch } from "../../redux/store";
 interface IFormInput {
   email: string;
   password: string;
 }
 
 const Login = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const schema = yup.object().shape({
     email: yup.string().email("Invalid email").required("Email is required"),
     password: yup.string().required("Password is required"),
@@ -27,17 +28,8 @@ const Login = () => {
     mode: "onChange",
   });
 
-  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-    try {
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        data.email,
-        data.password
-      );
-      console.log("User looged in", userCredential.user);
-    } catch (error: unknown) {
-      console.log("Error", error);
-    }
+  const onSubmit: SubmitHandler<IFormInput> = (data) => {
+    dispatch(loginUser({ email: data.email, password: data.password }));
     console.log(data);
     dispatch(closeModalWindow());
   };

@@ -3,17 +3,28 @@ import css from "./Navigation.module.css";
 import { NavLink } from "react-router-dom";
 import clsx from "clsx";
 import { useEffect, useRef, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { openModalWindow } from "../../redux/modal/slice";
 import SimpleModal from "../SimpleModal/SimpleModal";
 import Registration from "../Registration/Registration";
 import Login from "../Login/Login";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase";
+import { isLogged } from "../../redux/auth/selectors";
+import { AppDispatch } from "../../redux/store";
+import { logoutUser } from "../../redux/auth/operation";
+import { useAuth } from "../../Context/AuthContext";
 interface isActiveProps {
   isActive: boolean;
 }
 const Navigation = () => {
+  const { user } = useAuth();
+  console.log(user);
+  const loggedSelector = useSelector(isLogged);
+  console.log(loggedSelector);
+
   const [registerBtn, setRegisterBtn] = useState<string>("");
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const buildLinkClass = ({ isActive }: isActiveProps) => {
     return clsx(css.link, isActive && css.active);
   };
@@ -28,6 +39,10 @@ const Navigation = () => {
       }
     }
   }, [location.pathname]);
+  const logOutHandler = () => {
+    dispatch(logoutUser());
+    console.log("User logged out");
+  };
   return (
     <nav ref={navRef} className={css.navCont}>
       <div className={css.logoContainer}>
@@ -47,28 +62,44 @@ const Navigation = () => {
         </ul>
 
         <ul className={css.registerCont}>
-          <li>
-            <button
-              className={css.loginBtn}
-              onClick={() => {
-                dispatch(openModalWindow());
-                setRegisterBtn("login");
-              }}
-            >
-              Log In
-            </button>
-          </li>
-          <li>
-            <button
-              className={css.registerBtn}
-              onClick={() => {
-                dispatch(openModalWindow());
-                setRegisterBtn("register");
-              }}
-            >
-              Registration
-            </button>
-          </li>
+          <ul className={css.registerCont}>
+            {user !== null ? (
+              <li>
+                <div className={css.userLoggedCont}>
+                  <div>
+                    <img src="" alt="" />
+                    <p>User Name</p>
+                  </div>
+                  <button onClick={logOutHandler}>Log out</button>
+                </div>
+              </li>
+            ) : (
+              <>
+                <li>
+                  <button
+                    className={css.loginBtn}
+                    onClick={() => {
+                      dispatch(openModalWindow());
+                      setRegisterBtn("login");
+                    }}
+                  >
+                    Log In
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className={css.registerBtn}
+                    onClick={() => {
+                      dispatch(openModalWindow());
+                      setRegisterBtn("register");
+                    }}
+                  >
+                    Registration
+                  </button>
+                </li>
+              </>
+            )}
+          </ul>
         </ul>
       </div>
       {registerBtn === "login" ? (
@@ -80,14 +111,6 @@ const Navigation = () => {
           <Registration />
         </SimpleModal>
       )}
-
-      <div className={css.userLoggedCont}>
-        <div>
-          <img src="" alt="" />
-          <p>User Name</p>
-        </div>
-        <button>Log out</button>
-      </div>
     </nav>
   );
 };

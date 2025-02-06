@@ -2,17 +2,23 @@ import css from "./Registration.module.css";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { closeModalWindow } from "../../redux/modal/slice";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase";
+// import { createUserWithEmailAndPassword } from "firebase/auth";
+// import { auth } from "../../firebase";
+import { registerUser } from "../../redux/auth/operation";
+import { AppDispatch } from "../../redux/store";
+import { userInfo } from "../../redux/auth/selectors";
 interface IFormInput {
   name: string;
   email: string;
   password: string;
 }
 const Registration = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
+  const userSelect = useSelector(userInfo);
+  console.log(userSelect);
+
   const schema = yup.object().shape({
     name: yup.string().required("Required!").min(5, "Too short!"),
     email: yup.string().email("Invalid email").required("Email is required"),
@@ -25,17 +31,18 @@ const Registration = () => {
     formState: { errors },
   } = useForm<IFormInput>({ resolver: yupResolver(schema), mode: "onChange" });
 
-  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-    try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        data.email,
-        data.password
-      );
-      console.log("User registered", userCredential.user);
-    } catch (error: unknown) {
-      console.log(error);
-    }
+  const onSubmit: SubmitHandler<IFormInput> = (data) => {
+    // try {
+    //   const userCredential = await createUserWithEmailAndPassword(
+    //     auth,
+    //     data.email,
+    //     data.password
+    //   );
+    //   console.log("User registered", userCredential.user);
+    // } catch (error: unknown) {
+    //   console.log(error);
+    // }
+    dispatch(registerUser({ email: data.email, password: data.password }));
     console.log(data);
     dispatch(closeModalWindow());
   };
