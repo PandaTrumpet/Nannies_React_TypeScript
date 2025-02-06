@@ -4,7 +4,8 @@ import * as yup from "yup";
 import css from "./Login.module.css";
 import { useDispatch } from "react-redux";
 import { closeModalWindow } from "../../redux/modal/slice";
-
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase";
 interface IFormInput {
   email: string;
   password: string;
@@ -26,7 +27,17 @@ const Login = () => {
     mode: "onChange",
   });
 
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
+  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      );
+      console.log("User looged in", userCredential.user);
+    } catch (error: unknown) {
+      console.log("Error", error);
+    }
     console.log(data);
     dispatch(closeModalWindow());
   };

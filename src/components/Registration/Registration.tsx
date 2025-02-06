@@ -4,7 +4,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useDispatch } from "react-redux";
 import { closeModalWindow } from "../../redux/modal/slice";
-
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase";
 interface IFormInput {
   name: string;
   email: string;
@@ -24,7 +25,17 @@ const Registration = () => {
     formState: { errors },
   } = useForm<IFormInput>({ resolver: yupResolver(schema), mode: "onChange" });
 
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
+  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      );
+      console.log("User registered", userCredential.user);
+    } catch (error: unknown) {
+      console.log(error);
+    }
     console.log(data);
     dispatch(closeModalWindow());
   };
