@@ -42,7 +42,13 @@ const Registration = () => {
     // } catch (error: unknown) {
     //   console.log(error);
     // }
-    dispatch(registerUser({ email: data.email, password: data.password }));
+    dispatch(
+      registerUser({
+        email: data.email,
+        password: data.password,
+        name: data.name,
+      })
+    );
     console.log(data);
     dispatch(closeModalWindow());
   };

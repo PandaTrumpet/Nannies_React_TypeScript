@@ -1,0 +1,69 @@
+.appointmentCont {
+    padding-top: 150px;
+    max-width: 472px;
+}
+
+.appointTitleCont h2 {
+
+    font-weight: 500;
+    font-size: 2.5rem;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: #11101c;
+}
+
+.appointTitleCont {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.appointTitleCont p {
+
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.25;
+    color: rgba(17, 16, 28, 0.5);
+}
+
+.nannieFoto {
+    border-radius: 15px;
+    width: 44px;
+    height: 44px;
+    background: #e0e0e0;
+}
+
+.nannieInfo {
+    display: flex;
+
+    gap: 14px;
+    background: #fbfbfb;
+}
+
+.nannieContInfo p {
+
+    font-weight: 500;
+    font-size: 0.75rem;
+
+    line-height: 1.33;
+    color: #8a8a89;
+}
+
+.nannieContInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-height: 44px;
+    /* justify-content: center; */
+    /* align-items: center; */
+    margin-bottom: 40px;
+}
+
+.nannieContInfo h3 {
+
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.5%;
+    color: #11101c;
+}
