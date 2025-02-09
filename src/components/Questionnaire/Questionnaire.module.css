@@ -1,0 +1,157 @@
+.questionnaireCont {
+    max-width: 1184px;
+    padding: 24px;
+    display: flex;
+    gap: 24px;
+}
+
+.fotoCont {
+    border: 2px solid rgba(240, 63, 59, 0.2);
+    border-radius: 30px;
+    min-width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fotoNannie {
+    border-radius: 15px;
+    min-width: 96px;
+    height: 96px;
+}
+
+.nannieName {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.nannieName p {
+
+
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.5%;
+    color: #8a8a89;
+}
+
+.nannieName h3 {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 100%;
+    color: #11101c;
+}
+
+.secondContTitle {
+    display: flex;
+    gap: 48px;
+}
+
+.locationCont,
+.ratingCont,
+.priceCont {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.locationCont p {
+
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #11101c;
+}
+
+.descriptionNannieCont {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.symbol {
+    color: rgba(17, 16, 28, 0.2);
+
+}
+
+.ratingCont p {
+
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #11101c;
+}
+
+.priceCont p {
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #11101c;
+}
+
+.priceCont p span {
+    color: #38cd3e;
+}
+
+.titleCont {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    margin-bottom: 32px;
+}
+
+.age,
+.experience,
+.kidsAgeCont,
+.charactersCont,
+.educationCont {
+    padding: 8px 16px;
+}
+
+.age p,
+.experience p,
+.kidsAgeCont p,
+.charactersCont p,
+.educationCont p {
+
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #8a8a89;
+}
+
+.age p span,
+.experience p span,
+.kidsAgeCont p span,
+.charactersCont p span,
+.educationCont p span {
+    color: #11101c;
+}
+
+.experienceCont {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.description {
+
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.25;
+    color: rgba(17, 16, 28, 0.5);
+    margin-top: 24px;
+    margin-bottom: 18px;
+}
+
+.moreLink {
+
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.5;
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+    color: #11101c;
+}
