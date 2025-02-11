@@ -24,9 +24,11 @@ interface IIniatialState {
   nannie: INannie | null;
   loading: boolean;
   error: string | null;
+  lastKey: null;
 }
 const initialState: IIniatialState = {
   nannies: [],
+  lastKey: null,
   nannie: null,
   loading: false,
   error: null,
@@ -38,7 +40,9 @@ const nanniesSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getNannies.fulfilled, (state, action) => {
-        state.nannies = action.payload;
+        state.loading = false;
+        state.nannies = [...state.nannies, ...action.payload.data];
+        state.lastKey = action.payload.lastKey;
       })
       .addCase(getNannieById.fulfilled, (state, action) => {
         state.nannie = action.payload;
