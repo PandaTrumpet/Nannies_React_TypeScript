@@ -4,6 +4,9 @@ import { MdOutlineStarPurple500 } from "react-icons/md";
 
 import HeartIcon from "../HeartIcon";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../redux/store";
+import { addToFavoriteNannies } from "../../redux/nannies/slice";
 
 type Reviews = {
   comment: string;
@@ -33,6 +36,7 @@ const Questionnaire: React.FC<QuestionnaireProps> = ({ nannie }) => {
   const currentData = new Date();
   const age = currentData.getFullYear() - birthDate.getFullYear();
   const reviews = nannie.reviews;
+  const dispatch = useDispatch<AppDispatch>();
   return (
     <div className={css.questionnaireCont}>
       <div className={css.fotoCont}>
@@ -67,7 +71,9 @@ const Questionnaire: React.FC<QuestionnaireProps> = ({ nannie }) => {
                 </p>
               </div>
             </div>
-            <HeartIcon />
+            <div onClick={() => dispatch(addToFavoriteNannies(nannie))}>
+              <HeartIcon />
+            </div>
           </div>
         </div>
         <div className={css.experienceCont}>

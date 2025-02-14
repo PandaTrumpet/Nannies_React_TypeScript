@@ -10,24 +10,7 @@ import {
 } from "firebase/database";
 
 import { database } from "../../firebase";
-// export const getNannies = createAsyncThunk(
-//   "nannies/getNannies",
-//   async (_, thunkAPI) => {
-//     try {
-//       const dbRef = ref(database);
-//       const snapshot = await get(child(dbRef, "/"));
-//       if (snapshot.exists()) {
-//         const nannies = snapshot.val();
-//         // console.log(nannies);
-//         return nannies;
-//       } else {
-//         console.log("No data available");
-//       }
-//     } catch (error) {
-//       thunkAPI.rejectWithValue(error);
-//     }
-//   }
-// );
+
 export const getNannies = createAsyncThunk(
   "nannies/getNannies",
   async (startKey: string | null, thunkAPI) => {

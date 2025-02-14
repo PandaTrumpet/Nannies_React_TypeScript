@@ -6,6 +6,7 @@ type Reviews = {
   reviewer: string;
 };
 interface INannie {
+  id?: string;
   about: string;
   avatar_url: string;
   birthday: string;
@@ -19,15 +20,19 @@ interface INannie {
   rating: number;
   reviews: Reviews[];
 }
-interface IIniatialState {
+interface IniatialState {
   nannies: INannie[];
+  favouriteNannies: INannie[];
   nannie: INannie | null;
   loading: boolean;
   error: string | null;
   lastKey: string | null;
 }
-const initialState: IIniatialState = {
+const initialState: IniatialState = {
   nannies: [],
+  favouriteNannies: JSON.parse(
+    localStorage.getItem("favouriteNannies") || "[]"
+  ),
   lastKey: null,
   nannie: null,
   loading: false,
@@ -36,7 +41,20 @@ const initialState: IIniatialState = {
 const nanniesSlice = createSlice({
   name: "nannies",
   initialState,
-  reducers: {},
+  reducers: {
+    addToFavoriteNannies(state, action) {
+      const isFavourite = state.favouriteNannies.some(
+        (nannie) => nannie.id === action.payload.id
+      );
+      if (!isFavourite) {
+        state.favouriteNannies.push(action.payload);
+        localStorage.setItem(
+          "favouriteNannies",
+          JSON.stringify(state.favouriteNannies)
+        );
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getNannies.fulfilled, (state, action) => {
@@ -57,3 +75,4 @@ const nanniesSlice = createSlice({
 });
 
 export default nanniesSlice.reducer;
+export const { addToFavoriteNannies } = nanniesSlice.actions;

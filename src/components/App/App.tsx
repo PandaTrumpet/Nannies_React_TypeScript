@@ -1,9 +1,9 @@
 import Favorites from "../../Page/Favorites/Favorites";
 import Home from "../../Page/Home/Home";
 import Nannies from "../../Page/Nannies/Nannies";
-import MakeAnAppointment from "../MakeAnAppointment/MakeAnAppointment";
+// import MakeAnAppointment from "../MakeAnAppointment/MakeAnAppointment";
 import Navigation from "../Navigation/Navigation";
-
+// import GoogleAuth from "../GoogleAuth/GoogleAuth.jsx";
 import css from "./App.module.css";
 import { Route, Routes } from "react-router-dom";
 function App() {
@@ -15,7 +15,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/nannies" element={<Nannies />} />
           <Route path="/favorites" element={<Favorites />} />
-          <Route path="/register" element={<MakeAnAppointment />} />
+          {/* <Route path="/google" element={<GoogleAuth />} /> */}
         </Routes>
       </div>
     </>

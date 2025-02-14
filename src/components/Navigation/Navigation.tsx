@@ -8,9 +8,9 @@ import { openModalWindow } from "../../redux/modal/slice";
 import SimpleModal from "../SimpleModal/SimpleModal";
 import Registration from "../Registration/Registration";
 import Login from "../Login/Login";
-import { signOut } from "firebase/auth";
-import { auth } from "../../firebase";
-import { isLogged } from "../../redux/auth/selectors";
+// import { signOut } from "firebase/auth";
+// import { auth } from "../../firebase";
+// import { isLogged } from "../../redux/auth/selectors";
 import { AppDispatch } from "../../redux/store";
 import { logoutUser } from "../../redux/auth/operation";
 import { useAuth } from "../../Context/AuthContext";
@@ -19,9 +19,9 @@ interface isActiveProps {
 }
 const Navigation = () => {
   const { user } = useAuth();
-  console.log(user);
-  const loggedSelector = useSelector(isLogged);
-  console.log(loggedSelector);
+  // console.log(user);
+  // const loggedSelector = useSelector(isLogged);
+  // console.log(loggedSelector);
 
   const [registerBtn, setRegisterBtn] = useState<string>("");
   const dispatch = useDispatch<AppDispatch>();

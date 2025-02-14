@@ -3,12 +3,18 @@ import css from "./Nannies.module.css";
 import { AppDispatch } from "../../redux/store";
 import { useEffect } from "react";
 import { getNannies } from "../../redux/nannies/operation";
-import { lastKey, nanniesSelectors } from "../../redux/nannies/selectors";
+import {
+  favoriteNannies,
+  lastKey,
+  nanniesSelectors,
+} from "../../redux/nannies/selectors";
 import Filter from "../../components/Filter/Filter";
 import Questionnaire from "../../components/Questionnaire/Questionnaire";
 
 const Nannies = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const favorite = useSelector(favoriteNannies);
+  console.log(favorite);
 
   const nannies = useSelector(nanniesSelectors);
   const lastKeySelect = useSelector(lastKey);
