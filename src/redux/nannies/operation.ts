@@ -51,7 +51,8 @@ export const getNannies = createAsyncThunk(
           id: key,
           ...data[key],
         }));
-
+        console.log("startKey:", startKey);
+        console.log("Полученные данные:", nanniesArray);
         return {
           data: nanniesArray.slice(startKey ? 1 : 0),
           lastKey: nanniesArray.at(-1)?.id,

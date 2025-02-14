@@ -1,6 +1,34 @@
 .nanniesCont {
     margin-top: 110px;
     padding-top: 64px;
+    padding-bottom: 64px;
     padding-left: 6.9%;
     padding-right: 6.9%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.filter {
+    align-self: flex-start;
+    margin-left: 6.9%;
+}
+
+.loadBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 64px auto 0 auto;
+    border-radius: 30px;
+    padding: 14px 40px;
+    width: 159px;
+    background: #0957c3;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: #fbfbfb;
+    border: none;
+    cursor: pointer;
 }

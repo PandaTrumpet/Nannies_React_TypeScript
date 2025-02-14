@@ -17,10 +17,12 @@ const Nannies = () => {
     if (nannies.length === 0) {
       dispatch(getNannies(null));
     }
-  }, [dispatch, nannies.length]);
+  }, [dispatch, nannies]);
   return (
     <div className={css.nanniesCont}>
-      <Filter />
+      <div className={css.filter}>
+        <Filter />
+      </div>
       <div>
         {nannies.length !== 0 && (
           <ul>
@@ -32,7 +34,10 @@ const Nannies = () => {
           </ul>
         )}
 
-        <button onClick={() => dispatch(getNannies(lastKeySelect))}>
+        <button
+          className={css.loadBtn}
+          onClick={() => dispatch(getNannies(lastKeySelect))}
+        >
           More
         </button>
       </div>

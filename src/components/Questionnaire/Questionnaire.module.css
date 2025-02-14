@@ -154,4 +154,84 @@
     text-decoration: underline;
     text-decoration-skip-ink: none;
     color: #11101c;
+    cursor: pointer;
+}
+
+.reviewerLetter {
+    border-radius: 100px;
+    width: 44px;
+    height: 44px;
+    background: rgba(9, 87, 195, 0.2);
+    border: 1px solid #0957c3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reviewerLetter p {
+
+    font-weight: 500;
+    font-size: 1.25rem;
+    line-height: 1;
+    color: #0957c3;
+}
+
+.reviewerRatingCont {
+    display: flex;
+    gap: 8px;
+}
+
+.reviewerNameCont {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.reviewerCont {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.reviewItem {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.reviewList {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.reviewerComment {
+
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.25;
+    color: rgba(17, 16, 28, 0.5);
+}
+
+.mainReviewCont {
+    margin-top: 48px;
+
+}
+
+.mainReviewCont button {
+    margin-top: 48px;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: #fbfbfb;
+    border-radius: 30px;
+    padding: 14px 28px;
+    width: 215px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0957c3;
+    border: none;
+    cursor: pointer;
 }

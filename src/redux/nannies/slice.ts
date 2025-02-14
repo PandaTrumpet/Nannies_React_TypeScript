@@ -24,7 +24,7 @@ interface IIniatialState {
   nannie: INannie | null;
   loading: boolean;
   error: string | null;
-  lastKey: null;
+  lastKey: string | null;
 }
 const initialState: IIniatialState = {
   nannies: [],
@@ -41,7 +41,13 @@ const nanniesSlice = createSlice({
     builder
       .addCase(getNannies.fulfilled, (state, action) => {
         state.loading = false;
-        state.nannies = [...state.nannies, ...action.payload.data];
+        // state.nannies = [...state.nannies, ...action.payload.data];
+        const combined = [...state.nannies, ...action.payload.data];
+        // Фильтруем по уникальному id
+        state.nannies = combined.filter(
+          (item, index, self) =>
+            index === self.findIndex((t) => t.id === item.id)
+        );
         state.lastKey = action.payload.lastKey;
       })
       .addCase(getNannieById.fulfilled, (state, action) => {

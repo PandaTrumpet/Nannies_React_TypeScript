@@ -3,7 +3,7 @@ import { SlLocationPin } from "react-icons/sl";
 import { MdOutlineStarPurple500 } from "react-icons/md";
 
 import HeartIcon from "../HeartIcon";
-import { Link } from "react-router-dom";
+import { useState } from "react";
 
 type Reviews = {
   comment: string;
@@ -28,6 +28,11 @@ interface QuestionnaireProps {
   nannie: INannie;
 }
 const Questionnaire: React.FC<QuestionnaireProps> = ({ nannie }) => {
+  const [visibileReviews, setVisibileReviews] = useState<boolean>(false);
+  const birthDate = new Date(nannie.birthday);
+  const currentData = new Date();
+  const age = currentData.getFullYear() - birthDate.getFullYear();
+  const reviews = nannie.reviews;
   return (
     <div className={css.questionnaireCont}>
       <div className={css.fotoCont}>
@@ -68,7 +73,7 @@ const Questionnaire: React.FC<QuestionnaireProps> = ({ nannie }) => {
         <div className={css.experienceCont}>
           <div className={css.age}>
             <p>
-              Age: <span>27</span>
+              Age: <span>{age}</span>
             </p>
           </div>
           <div className={css.experience}>
@@ -96,9 +101,40 @@ const Questionnaire: React.FC<QuestionnaireProps> = ({ nannie }) => {
           </div>
         </div>
         <p className={css.description}>{nannie.about}</p>
-        <Link to="reviews" className={css.moreLink}>
-          Read more
-        </Link>
+        {!visibileReviews && (
+          <p onClick={() => setVisibileReviews(true)} className={css.moreLink}>
+            Read more
+          </p>
+        )}
+
+        {visibileReviews && (
+          <div className={css.mainReviewCont}>
+            <ul className={css.reviewList}>
+              {reviews.length !== 0 &&
+                reviews.map((el, index) => {
+                  console.log(el);
+                  return (
+                    <li key={index} className={css.reviewItem}>
+                      <div className={css.reviewerCont}>
+                        <div className={css.reviewerLetter}>
+                          <p>{el.reviewer.slice(0, 1)}</p>
+                        </div>
+                        <div className={css.reviewerNameCont}>
+                          <p>{el.reviewer}</p>
+                          <div className={css.reviewerRatingCont}>
+                            <MdOutlineStarPurple500 color="#ffc531" />
+                            <p>{el.rating}</p>
+                          </div>
+                        </div>
+                      </div>
+                      <p className={css.reviewerComment}>{el.comment}</p>
+                    </li>
+                  );
+                })}
+            </ul>
+            <button>Make an appointment</button>
+          </div>
+        )}
       </div>
     </div>
   );
