@@ -4,9 +4,11 @@ import { MdOutlineStarPurple500 } from "react-icons/md";
 
 import HeartIcon from "../HeartIcon";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../redux/store";
-import { addToFavoriteNannies } from "../../redux/nannies/slice";
+import { addToFavoriteNannies, deleteFromVafourite } from "../../redux/nannies/slice";
+import { favoriteNannies, nanniesSelectors } from "../../redux/nannies/selectors";
+import heart from '../../image/heart.svg'
 
 type Reviews = {
   comment: string;
@@ -36,7 +38,17 @@ const Questionnaire: React.FC<QuestionnaireProps> = ({ nannie }) => {
   const currentData = new Date();
   const age = currentData.getFullYear() - birthDate.getFullYear();
   const reviews = nannie.reviews;
+  const nannies = useSelector(favoriteNannies)
   const dispatch = useDispatch<AppDispatch>();
+const toggleFavorite = (nannie: INannie) => {
+  const isFavorite = nannies.some(fav => fav.name === nannie.name);
+  if (isFavorite) {
+    dispatch(deleteFromVafourite(nannie));
+  } else {
+    dispatch(addToFavoriteNannies(nannie));
+  }
+};
+
   return (
     <div className={css.questionnaireCont}>
       <div className={css.fotoCont}>
@@ -71,8 +83,11 @@ const Questionnaire: React.FC<QuestionnaireProps> = ({ nannie }) => {
                 </p>
               </div>
             </div>
-            <div onClick={() => dispatch(addToFavoriteNannies(nannie))}>
-              <HeartIcon />
+            <div onClick={()=>toggleFavorite(nannie)} >
+              {/* <HeartIcon /> */}
+              {/* <HeartIcon/> */}
+              <img src={heart} alt="heart icon" className={css.heartIcon} />
+             
             </div>
           </div>
         </div>

@@ -54,6 +54,13 @@ const nanniesSlice = createSlice({
         );
       }
     },
+    deleteFromVafourite(state, action) {
+      state.favouriteNannies = state.favouriteNannies.filter((nannie) => nannie.id !== action.payload.id)
+      localStorage.setItem(
+          "favouriteNannies",
+          JSON.stringify(state.favouriteNannies)
+        );
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -75,4 +82,4 @@ const nanniesSlice = createSlice({
 });
 
 export default nanniesSlice.reducer;
-export const { addToFavoriteNannies } = nanniesSlice.actions;
+export const { addToFavoriteNannies,deleteFromVafourite } = nanniesSlice.actions;

@@ -235,3 +235,10 @@
     border: none;
     cursor: pointer;
 }
+
+.heartIcon {
+    width: 25px;
+    height: 25px;
+    stroke: #11101c;
+    cursor: pointer;
+}
