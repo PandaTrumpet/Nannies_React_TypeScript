@@ -3,13 +3,13 @@ import { SlLocationPin } from "react-icons/sl";
 import { MdOutlineStarPurple500 } from "react-icons/md";
 
 import HeartIcon from "../HeartIcon";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../redux/store";
 import { addToFavoriteNannies, deleteFromVafourite } from "../../redux/nannies/slice";
 import { favoriteNannies, nanniesSelectors } from "../../redux/nannies/selectors";
 import heart from '../../image/heart.svg'
-
+import fullHeart from '../../image/fullHeart.png'
 type Reviews = {
   comment: string;
   rating: number;
@@ -44,11 +44,19 @@ const toggleFavorite = (nannie: INannie) => {
   const isFavorite = nannies.some(fav => fav.name === nannie.name);
   if (isFavorite) {
     dispatch(deleteFromVafourite(nannie));
+    setHeartFavourite(false)
   } else {
     dispatch(addToFavoriteNannies(nannie));
+    setHeartFavourite(true)
   }
 };
-
+  useEffect(() => {
+    const isFavorite = nannies.some(fav => fav.name === nannie.name);
+    if (isFavorite) {
+      setHeartFavourite(true)
+    }
+  },[nannies,nannie.name])
+const [heartFavourite, setHeartFavourite] = useState<boolean>(false)
   return (
     <div className={css.questionnaireCont}>
       <div className={css.fotoCont}>
@@ -86,7 +94,7 @@ const toggleFavorite = (nannie: INannie) => {
             <div onClick={()=>toggleFavorite(nannie)} >
               {/* <HeartIcon /> */}
               {/* <HeartIcon/> */}
-              <img src={heart} alt="heart icon" className={css.heartIcon} />
+              <img  src={heartFavourite? fullHeart:heart} alt="heart icon" className={css.heartIcon} />
              
             </div>
           </div>
