@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import css from "./Navigation.module.css";
 import { NavLink } from "react-router-dom";
 import clsx from "clsx";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { openModalWindow } from "../../redux/modal/slice";
 import SimpleModal from "../SimpleModal/SimpleModal";
@@ -14,6 +14,8 @@ import Login from "../Login/Login";
 import { AppDispatch } from "../../redux/store";
 import { logoutUser } from "../../redux/auth/operation";
 import { useAuth } from "../../Context/AuthContext";
+import { selectModalType } from "../../redux/modal/selectors";
+import MakeAnAppointment from "../MakeAnAppointment/MakeAnAppointment";
 interface isActiveProps {
   isActive: boolean;
 }
@@ -23,7 +25,6 @@ const Navigation = () => {
   // const loggedSelector = useSelector(isLogged);
   // console.log(loggedSelector);
 
-  const [registerBtn, setRegisterBtn] = useState<string>("");
   const dispatch = useDispatch<AppDispatch>();
   const buildLinkClass = ({ isActive }: isActiveProps) => {
     return clsx(css.link, isActive && css.active);
@@ -43,6 +44,7 @@ const Navigation = () => {
     dispatch(logoutUser());
     console.log("User logged out");
   };
+  const modalTypeSelect = useSelector(selectModalType);
   return (
     <nav ref={navRef} className={css.navCont}>
       <div className={css.logoContainer}>
@@ -79,8 +81,7 @@ const Navigation = () => {
                   <button
                     className={css.loginBtn}
                     onClick={() => {
-                      dispatch(openModalWindow());
-                      setRegisterBtn("login");
+                      dispatch(openModalWindow({ modalType: "login" }));
                     }}
                   >
                     Log In
@@ -90,8 +91,7 @@ const Navigation = () => {
                   <button
                     className={css.registerBtn}
                     onClick={() => {
-                      dispatch(openModalWindow());
-                      setRegisterBtn("register");
+                      dispatch(openModalWindow({ modalType: "register" }));
                     }}
                   >
                     Registration
@@ -102,13 +102,19 @@ const Navigation = () => {
           </ul>
         </ul>
       </div>
-      {registerBtn === "login" ? (
+      {modalTypeSelect === "login" && (
         <SimpleModal>
           <Login />
         </SimpleModal>
-      ) : (
+      )}
+      {modalTypeSelect === "register" && (
         <SimpleModal>
           <Registration />
+        </SimpleModal>
+      )}
+      {modalTypeSelect === "appointment" && (
+        <SimpleModal>
+          <MakeAnAppointment />
         </SimpleModal>
       )}
     </nav>

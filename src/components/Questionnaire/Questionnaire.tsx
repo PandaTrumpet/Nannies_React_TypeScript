@@ -2,14 +2,19 @@ import css from "./Questionnaire.module.css";
 import { SlLocationPin } from "react-icons/sl";
 import { MdOutlineStarPurple500 } from "react-icons/md";
 
-import HeartIcon from "../HeartIcon";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../redux/store";
-import { addToFavoriteNannies, deleteFromVafourite } from "../../redux/nannies/slice";
-import { favoriteNannies, nanniesSelectors } from "../../redux/nannies/selectors";
-import heart from '../../image/heart.svg'
-import fullHeart from '../../image/fullHeart.png'
+import {
+  addToFavoriteNannies,
+  deleteFromVafourite,
+} from "../../redux/nannies/slice";
+import { favoriteNannies } from "../../redux/nannies/selectors";
+import heart from "../../image/heart.svg";
+import fullHeart from "../../image/fullHeart.png";
+
+import { openModalWindow } from "../../redux/modal/slice";
+
 type Reviews = {
   comment: string;
   rating: number;
@@ -38,25 +43,26 @@ const Questionnaire: React.FC<QuestionnaireProps> = ({ nannie }) => {
   const currentData = new Date();
   const age = currentData.getFullYear() - birthDate.getFullYear();
   const reviews = nannie.reviews;
-  const nannies = useSelector(favoriteNannies)
+  const nannies = useSelector(favoriteNannies);
   const dispatch = useDispatch<AppDispatch>();
-const toggleFavorite = (nannie: INannie) => {
-  const isFavorite = nannies.some(fav => fav.name === nannie.name);
-  if (isFavorite) {
-    dispatch(deleteFromVafourite(nannie));
-    setHeartFavourite(false)
-  } else {
-    dispatch(addToFavoriteNannies(nannie));
-    setHeartFavourite(true)
-  }
-};
-  useEffect(() => {
-    const isFavorite = nannies.some(fav => fav.name === nannie.name);
+  const toggleFavorite = (nannie: INannie) => {
+    const isFavorite = nannies.some((fav) => fav.name === nannie.name);
     if (isFavorite) {
-      setHeartFavourite(true)
+      dispatch(deleteFromVafourite(nannie));
+      setHeartFavourite(false);
+    } else {
+      dispatch(addToFavoriteNannies(nannie));
+      setHeartFavourite(true);
     }
-  },[nannies,nannie.name])
-const [heartFavourite, setHeartFavourite] = useState<boolean>(false)
+  };
+  useEffect(() => {
+    const isFavorite = nannies.some((fav) => fav.name === nannie.name);
+    if (isFavorite) {
+      setHeartFavourite(true);
+    }
+  }, [nannies, nannie.name]);
+  const [heartFavourite, setHeartFavourite] = useState<boolean>(false);
+
   return (
     <div className={css.questionnaireCont}>
       <div className={css.fotoCont}>
@@ -91,11 +97,14 @@ const [heartFavourite, setHeartFavourite] = useState<boolean>(false)
                 </p>
               </div>
             </div>
-            <div onClick={()=>toggleFavorite(nannie)} >
+            <div onClick={() => toggleFavorite(nannie)}>
               {/* <HeartIcon /> */}
               {/* <HeartIcon/> */}
-              <img  src={heartFavourite? fullHeart:heart} alt="heart icon" className={css.heartIcon} />
-             
+              <img
+                src={heartFavourite ? fullHeart : heart}
+                alt="heart icon"
+                className={css.heartIcon}
+              />
             </div>
           </div>
         </div>
@@ -161,7 +170,18 @@ const [heartFavourite, setHeartFavourite] = useState<boolean>(false)
                   );
                 })}
             </ul>
-            <button>Make an appointment</button>
+            <button
+              onClick={() => {
+                dispatch(
+                  openModalWindow({
+                    modalType: "appointment",
+                    modalData: { photo: nannie.avatar_url, name: nannie.name },
+                  })
+                );
+              }}
+            >
+              Make an appointment
+            </button>
           </div>
         )}
       </div>

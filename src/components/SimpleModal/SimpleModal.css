@@ -10,6 +10,7 @@
     opacity: 0;
     pointer-events: none;
     animation: fadeIn 0.3s forwards;
+    overflow-x: hidden;
 }
 
 @keyframes fadeIn {
@@ -47,6 +48,9 @@
     align-items: center;
     width: 100%;
     min-height: 100%;
+    overflow: auto;
+
+
 }
 
 .modal-content {
@@ -61,6 +65,8 @@
     opacity: 0;
     transform: translateY(-50px);
     animation: slideIn 0.3s forwards;
+
+
 }
 
 @keyframes slideIn {

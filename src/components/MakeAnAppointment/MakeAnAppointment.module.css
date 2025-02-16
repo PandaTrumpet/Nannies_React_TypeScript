@@ -1,6 +1,6 @@
 .appointmentCont {
-    padding-top: 150px;
-    max-width: 472px;
+    /* padding-top: 150px; */
+    width: 472px;
 }
 
 .appointTitleCont h2 {
@@ -36,9 +36,20 @@
 
 .nannieInfo {
     display: flex;
-
+    max-height: 44px;
     gap: 14px;
     background: #fbfbfb;
+    align-items: center;
+    margin-bottom: 40px;
+
+}
+
+.nannieContInfo {
+    display: flex;
+    flex-direction: column;
+    /* gap: 16px; */
+    /* justify-content: space-around; */
+
 }
 
 .nannieContInfo p {
@@ -50,20 +61,101 @@
     color: #8a8a89;
 }
 
-.nannieContInfo {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    min-height: 44px;
-    /* justify-content: center; */
-    /* align-items: center; */
-    margin-bottom: 40px;
-}
 
 .nannieContInfo h3 {
 
     font-weight: 500;
     font-size: 1rem;
-    line-height: 1.5%;
+
+    color: #11101c;
+}
+
+.timeCont,
+.contactCont {
+    display: flex;
+    gap: 10px;
+}
+
+.contactCont input {
+    border: 1px solid rgba(17, 16, 28, 0.1);
+    border-radius: 12px;
+    padding: 16px 18px 16px 18px;
+    width: 232px;
+    outline: none;
+}
+
+
+
+.timeCont input {
+    border: 1px solid rgba(17, 16, 28, 0.1);
+    border-radius: 12px;
+    padding: 16px 18px 16px 18px;
+    width: 232px;
+    outline: none;
+}
+
+.infoCont {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.infoCont input,
+.infoCont textarea {
+    width: 100%;
+    border: 1px solid rgba(17, 16, 28, 0.1);
+    border-radius: 12px;
+    padding: 16px 18px 16px 18px;
+    outline: none;
+}
+
+.infoCont textarea {
+    resize: none;
+    border: 1px solid rgba(17, 16, 28, 0.1);
+    border-radius: 12px;
+    padding: 16px 18px 80px 18px;
+    width: 472px;
+    /* height: 116px */
+}
+
+.makeBtn {
+    border-radius: 30px;
+    padding: 16px 217px;
+    width: 472px;
+    height: 52px;
+    background: #0957c3;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: #fbfbfb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    margin-top: 24px;
+}
+
+.appointmentForm {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.appointmentForm input::placeholder,
+.appointmentForm textarea::placeholder {
+    font-family: "Helvetica Neue", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 125%;
+    color: #11101c;
+}
+
+.appointmentCont input,
+.appointmentCont textarea {
+    font-family: "Helvetica Neue", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 125%;
     color: #11101c;
 }

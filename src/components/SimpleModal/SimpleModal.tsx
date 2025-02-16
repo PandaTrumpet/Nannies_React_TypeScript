@@ -1,18 +1,22 @@
-import { useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { MdOutlineClose } from "react-icons/md";
 import "./SimpleModal.css";
 
 import { useDispatch, useSelector } from "react-redux";
-import { openModalWindow, closeModalWindow } from "../../redux/modal/slice.js";
+import { closeModalWindow } from "../../redux/modal/slice.js";
 import { selectOpenModal } from "../../redux/modal/selectors.js";
-const SimpleModal = ({ children }) => {
+interface SimpleModalProps {
+  children: ReactNode;
+}
+
+const SimpleModal: React.FC<SimpleModalProps> = ({ children }) => {
   const [closing, setClosing] = useState(false);
 
   const selectModal = useSelector(selectOpenModal);
   const dispatch = useDispatch();
   useEffect(() => {
     // Логика для закрытия окна при нажатии клавиши Esc
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         closedModal(); // Закрываем модальное окно
       }

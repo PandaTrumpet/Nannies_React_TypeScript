@@ -1,6 +1,13 @@
+import { useState } from "react";
 import css from "./MakeAnAppointment.module.css";
+import { useSelector } from "react-redux";
+import { selectModalData } from "../../redux/modal/selectors";
 
 const MakeAnAppointment = () => {
+  const [time, setTime] = useState<string>("");
+  const nannie = useSelector(selectModalData);
+  console.log(nannie);
+
   return (
     <div className={css.appointmentCont}>
       <div className={css.appointTitleCont}>
@@ -14,27 +21,31 @@ const MakeAnAppointment = () => {
         </p>
       </div>
       <div className={css.nannieInfo}>
-        <img src="" alt="" className={css.nannieFoto} />
+        <img src={nannie?.photo} alt="" className={css.nannieFoto} />
         <div className={css.nannieContInfo}>
           <p>Your nanny</p>
-          <h3>Anna Shevchenko</h3>
+          <h3>{nannie?.name}</h3>
         </div>
       </div>
-      <form>
-        <div>
+      <form className={css.appointmentForm}>
+        <div className={css.contactCont}>
           <input type="text" placeholder="Address" />
-          <input type="number" />
+          <input type="text" placeholder="+380" />
         </div>
-        <div>
+        <div className={css.timeCont}>
           <input type="text" placeholder="Child's age" />
-          <input type="time" value="" />
+          <input
+            type="time"
+            value={time}
+            onChange={(e) => setTime(e.target.value)}
+          />
         </div>
-        <div>
-          <input type="email" />
-          <input type="text" />
-          <textarea />
+        <div className={css.infoCont}>
+          <input type="email" placeholder="Email" />
+          <input type="text" placeholder="Father's or mother's name" />
+          <textarea placeholder="Comment" />
         </div>
-        <input type="submit" value="Send" />
+        <button className={css.makeBtn}>Send</button>
       </form>
     </div>
   );
