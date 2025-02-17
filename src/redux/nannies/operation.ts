@@ -1,46 +1,95 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import {
-  getDatabase,
-  ref,
-  get,
-  query,
-  orderByKey,
-  startAt,
-  limitToFirst,
-} from "firebase/database";
+import { getDatabase, ref, get } from "firebase/database";
 
 import { database } from "../../firebase";
 
+interface GetNanniesParams {
+  startKey: string | null;
+  sortOption?:
+    | "AtoZ"
+    | "ZtoA"
+    | "LessThan10"
+    | "GreaterThan10"
+    | "Popular"
+    | "NotPopular"
+    | "ShowAll";
+}
+
 export const getNannies = createAsyncThunk(
   "nannies/getNannies",
-  async (startKey: string | null, thunkAPI) => {
+  async (params: GetNanniesParams, thunkAPI) => {
     try {
+      const { startKey, sortOption } = params;
       const database = getDatabase();
-      let q = query(ref(database, "/"), orderByKey(), limitToFirst(3)); // Загружаем 3 элемента
+      // Получаем данные из корня (если данные находятся в корне)
+      const baseRef = ref(database, "/");
 
-      if (startKey) {
-        q = query(
-          ref(database, "/"),
-          orderByKey(),
-          startAt(startKey),
-          limitToFirst(4)
-        );
-      }
+      // Получаем все данные без лимита
+      const snapshot = await get(baseRef);
 
-      const snapshot = await get(q);
       if (snapshot.exists()) {
-        const data = snapshot.val();
-        const nanniesArray = Object.keys(data).map((key) => ({
+        // Преобразуем объект в массив
+        let nanniesArray = Object.keys(snapshot.val()).map((key) => ({
           id: key,
-          ...data[key],
+          ...snapshot.val()[key],
         }));
-        console.log("startKey:", startKey);
-        console.log("Полученные данные:", nanniesArray);
+        console.log("Все полученные данные:", nanniesArray);
+
+        // Выполняем сортировку на клиенте по выбранному критерию
+        switch (sortOption) {
+          case "AtoZ":
+            nanniesArray.sort((a, b) => a.name.localeCompare(b.name));
+            break;
+          case "ZtoA":
+            nanniesArray.sort((a, b) => b.name.localeCompare(a.name));
+            break;
+          case "LessThan10":
+            nanniesArray.sort((a, b) => a.price_per_hour - b.price_per_hour);
+            nanniesArray = nanniesArray.filter(
+              (nanny) => nanny.price_per_hour < 10
+            );
+            break;
+          case "GreaterThan10":
+            nanniesArray.sort((a, b) => b.price_per_hour - a.price_per_hour);
+            nanniesArray = nanniesArray.filter(
+              (nanny) => nanny.price_per_hour >= 10
+            );
+            break;
+          case "Popular":
+            nanniesArray.sort((a, b) => b.rating - a.rating);
+            break;
+          case "NotPopular":
+            nanniesArray.sort((a, b) => a.rating - b.rating);
+            break;
+          case "ShowAll":
+          default:
+            // Можно оставить порядок, как есть
+            break;
+        }
+
+        // Клиентская пагинация: разбиваем отсортированный массив на страницы по 3 элемента
+        const pageSize = 3;
+        let startIndex = 0;
+        if (startKey) {
+          // Найти индекс элемента с ключом startKey
+          const index = nanniesArray.findIndex((item) => item.id === startKey);
+          startIndex = index !== -1 ? index + 1 : 0;
+        }
+        const paginatedData = nanniesArray.slice(
+          startIndex,
+          startIndex + pageSize
+        );
+        const newLastKey =
+          paginatedData.length > 0
+            ? paginatedData[paginatedData.length - 1].id
+            : null;
+
         return {
-          data: nanniesArray.slice(startKey ? 1 : 0),
-          lastKey: nanniesArray.at(-1)?.id,
+          data: paginatedData,
+          lastKey: newLastKey,
         };
       } else {
+        console.log("Нет данных в базе");
         return { data: [], lastKey: null };
       }
     } catch (error) {

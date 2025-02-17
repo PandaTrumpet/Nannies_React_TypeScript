@@ -61,7 +61,7 @@
     background: #0957c3;
     outline: none;
     border: none;
-
+    cursor: pointer;
     font-weight: 500;
     font-size: 1rem;
     line-height: 1.25%;

@@ -1,6 +1,7 @@
 import Favorites from "../../Page/Favorites/Favorites";
 import Home from "../../Page/Home/Home";
 import Nannies from "../../Page/Nannies/Nannies";
+import RestrictedRout from "../../Page/RestrictedRout";
 // import MakeAnAppointment from "../MakeAnAppointment/MakeAnAppointment";
 import Navigation from "../Navigation/Navigation";
 // import GoogleAuth from "../GoogleAuth/GoogleAuth.jsx";
@@ -14,8 +15,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/nannies" element={<Nannies />} />
-          <Route path="/favorites" element={<Favorites />} />
-          {/* <Route path="/google" element={<GoogleAuth />} /> */}
+
+          <Route
+            path="/favorites"
+            element={<RestrictedRout component={Favorites} redirectTo="/" />}
+          />
         </Routes>
       </div>
     </>

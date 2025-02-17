@@ -8,22 +8,19 @@ import { openModalWindow } from "../../redux/modal/slice";
 import SimpleModal from "../SimpleModal/SimpleModal";
 import Registration from "../Registration/Registration";
 import Login from "../Login/Login";
-// import { signOut } from "firebase/auth";
-// import { auth } from "../../firebase";
-// import { isLogged } from "../../redux/auth/selectors";
+import userFoto from "../../image/UserFoto.png";
 import { AppDispatch } from "../../redux/store";
 import { logoutUser } from "../../redux/auth/operation";
 import { useAuth } from "../../Context/AuthContext";
 import { selectModalType } from "../../redux/modal/selectors";
 import MakeAnAppointment from "../MakeAnAppointment/MakeAnAppointment";
+
 interface isActiveProps {
   isActive: boolean;
 }
 const Navigation = () => {
-  const { user } = useAuth();
-  // console.log(user);
-  // const loggedSelector = useSelector(isLogged);
-  // console.log(loggedSelector);
+  const { user, isAuthReady } = useAuth();
+  console.log(user);
 
   const dispatch = useDispatch<AppDispatch>();
   const buildLinkClass = ({ isActive }: isActiveProps) => {
@@ -45,6 +42,7 @@ const Navigation = () => {
     console.log("User logged out");
   };
   const modalTypeSelect = useSelector(selectModalType);
+  if (!isAuthReady) return null;
   return (
     <nav ref={navRef} className={css.navCont}>
       <div className={css.logoContainer}>
@@ -58,48 +56,50 @@ const Navigation = () => {
           <NavLink to="/nannies" className={buildLinkClass}>
             Nannies
           </NavLink>
-          <NavLink to="/favorites" className={buildLinkClass}>
-            Favorites
-          </NavLink>
+          {user && (
+            <NavLink to="/favorites" className={buildLinkClass}>
+              Favorites
+            </NavLink>
+          )}
         </ul>
 
         <ul className={css.registerCont}>
-          <ul className={css.registerCont}>
-            {user !== null ? (
-              <li>
-                <div className={css.userLoggedCont}>
-                  <div>
-                    <img src="" alt="" />
-                    <p>User Name</p>
+          {user !== null ? (
+            <li>
+              <div className={css.userLoggedCont}>
+                <div className={css.userCont}>
+                  <div className={css.userFoto}>
+                    <img src={userFoto} alt="" />
                   </div>
-                  <button onClick={logOutHandler}>Log out</button>
+                  <p>{user.displayName}</p>
                 </div>
+                <button onClick={logOutHandler}>Log out</button>
+              </div>
+            </li>
+          ) : (
+            <>
+              <li>
+                <button
+                  className={css.loginBtn}
+                  onClick={() => {
+                    dispatch(openModalWindow({ modalType: "login" }));
+                  }}
+                >
+                  Log In
+                </button>
               </li>
-            ) : (
-              <>
-                <li>
-                  <button
-                    className={css.loginBtn}
-                    onClick={() => {
-                      dispatch(openModalWindow({ modalType: "login" }));
-                    }}
-                  >
-                    Log In
-                  </button>
-                </li>
-                <li>
-                  <button
-                    className={css.registerBtn}
-                    onClick={() => {
-                      dispatch(openModalWindow({ modalType: "register" }));
-                    }}
-                  >
-                    Registration
-                  </button>
-                </li>
-              </>
-            )}
-          </ul>
+              <li>
+                <button
+                  className={css.registerBtn}
+                  onClick={() => {
+                    dispatch(openModalWindow({ modalType: "register" }));
+                  }}
+                >
+                  Registration
+                </button>
+              </li>
+            </>
+          )}
         </ul>
       </div>
       {modalTypeSelect === "login" && (

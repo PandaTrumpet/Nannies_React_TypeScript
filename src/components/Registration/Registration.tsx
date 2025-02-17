@@ -32,16 +32,6 @@ const Registration = () => {
   } = useForm<IFormInput>({ resolver: yupResolver(schema), mode: "onChange" });
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    // try {
-    //   const userCredential = await createUserWithEmailAndPassword(
-    //     auth,
-    //     data.email,
-    //     data.password
-    //   );
-    //   console.log("User registered", userCredential.user);
-    // } catch (error: unknown) {
-    //   console.log(error);
-    // }
     dispatch(
       registerUser({
         email: data.email,

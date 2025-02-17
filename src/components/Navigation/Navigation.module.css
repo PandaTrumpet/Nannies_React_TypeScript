@@ -109,3 +109,57 @@
     transform: translate(-50%, -50%) scale(1);
     opacity: 1;
 }
+
+.userLoggedCont {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
+.registerCont button {
+    border: 1px solid rgba(251, 251, 251, 0.4);
+    border-radius: 30px;
+    padding: 14px 39px;
+    width: 134px;
+    /* height: 48px; */
+    background: #0957c3;
+
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: #fbfbfb;
+    cursor: pointer;
+}
+
+.userFoto {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fbfbfb;
+    border-radius: 10px;
+}
+
+.userFoto img {
+    width: 16px;
+    height: 16px;
+}
+
+.userCont {
+    min-width: 94px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.userCont p {
+
+    font-weight: 500;
+    font-size: 1.125rem;
+    line-height: 1.11;
+    letter-spacing: -0.01em;
+    color: #fbfbfb;
+    text-transform: capitalize;
+}

@@ -55,26 +55,36 @@ const nanniesSlice = createSlice({
       }
     },
     deleteFromVafourite(state, action) {
-      state.favouriteNannies = state.favouriteNannies.filter((nannie) => nannie.id !== action.payload.id)
+      state.favouriteNannies = state.favouriteNannies.filter(
+        (nannie) => nannie.id !== action.payload.id
+      );
       localStorage.setItem(
-          "favouriteNannies",
-          JSON.stringify(state.favouriteNannies)
-        );
-    }
+        "favouriteNannies",
+        JSON.stringify(state.favouriteNannies)
+      );
+    },
   },
   extraReducers: (builder) => {
     builder
+
       .addCase(getNannies.fulfilled, (state, action) => {
         state.loading = false;
-        // state.nannies = [...state.nannies, ...action.payload.data];
-        const combined = [...state.nannies, ...action.payload.data];
-        // Фильтруем по уникальному id
-        state.nannies = combined.filter(
-          (item, index, self) =>
-            index === self.findIndex((t) => t.id === item.id)
-        );
+        // Если startKey равен null, значит, это новый запрос (например, при смене сортировки)
+        if (!action.meta.arg.startKey) {
+          state.nannies = action.payload.data;
+        } else {
+          // Это подгрузка: объединяем уже загруженные данные с новыми
+          const combined = [...state.nannies, ...action.payload.data];
+
+          // Убираем дубликаты по id
+          state.nannies = combined.filter(
+            (item, index, self) =>
+              index === self.findIndex((t) => t.id === item.id)
+          );
+        }
         state.lastKey = action.payload.lastKey;
       })
+
       .addCase(getNannieById.fulfilled, (state, action) => {
         state.nannie = action.payload;
       });
@@ -82,4 +92,5 @@ const nanniesSlice = createSlice({
 });
 
 export default nanniesSlice.reducer;
-export const { addToFavoriteNannies,deleteFromVafourite } = nanniesSlice.actions;
+export const { addToFavoriteNannies, deleteFromVafourite } =
+  nanniesSlice.actions;

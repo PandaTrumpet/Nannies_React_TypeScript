@@ -2,12 +2,54 @@ import { useState } from "react";
 import css from "./MakeAnAppointment.module.css";
 import { useSelector } from "react-redux";
 import { selectModalData } from "../../redux/modal/selectors";
-
+import { useForm, SubmitHandler } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 const MakeAnAppointment = () => {
   const [time, setTime] = useState<string>("");
   const nannie = useSelector(selectModalData);
-  console.log(nannie);
+  // console.log(nannie);
+  const [phone, setPhone] = useState<string>("+380");
+  interface IFormInput {
+    address: string;
+    phone: string;
+    age: number;
+    time: string;
+    email: string;
+    parentName: string;
+    comment?: string | null;
+  }
+  const appointmentSchema = yup.object({
+    address: yup.string().required("Address is required"),
+    phone: yup
+      .string()
+      .required("Phone is required")
+      // Проверяем, что номер начинается с +380 и содержит в сумме 13 символов (например, +380XXXXXXXXX)
+      .matches(/^\+380\d{9}$/, "Wrong format!"),
+    age: yup
+      .number()
+      .typeError("Child's age must be a number")
+      .required("Child's age is required"),
+    time: yup.string().required("Time is required"),
+    email: yup
+      .string()
+      .email("Invalid email address")
+      .required("Email is required"),
+    parentName: yup.string().required("Parent's name is required"),
+    comment: yup.string().notRequired(),
+  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IFormInput>({
+    resolver: yupResolver(appointmentSchema),
+    mode: "onChange",
+  });
 
+  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+    console.log(data);
+  };
   return (
     <div className={css.appointmentCont}>
       <div className={css.appointTitleCont}>
@@ -27,25 +69,65 @@ const MakeAnAppointment = () => {
           <h3>{nannie?.name}</h3>
         </div>
       </div>
-      <form className={css.appointmentForm}>
+      <form className={css.appointmentForm} onSubmit={handleSubmit(onSubmit)}>
         <div className={css.contactCont}>
-          <input type="text" placeholder="Address" />
-          <input type="text" placeholder="+380" />
+          <div>
+            {" "}
+            <input type="text" placeholder="Address" {...register("address")} />
+            {errors.address && (
+              <p className={css.errors}>{errors.address.message}</p>
+            )}
+          </div>
+          <div>
+            <input
+              {...register("phone")}
+              type="text"
+              value={phone}
+              onChange={(e) => {
+                console.log(phone);
+                setPhone(e.target.value);
+              }}
+            />
+            {errors.phone && (
+              <p className={css.errors}>{errors.phone.message}</p>
+            )}
+          </div>
         </div>
         <div className={css.timeCont}>
-          <input type="text" placeholder="Child's age" />
-          <input
-            type="time"
-            value={time}
-            onChange={(e) => setTime(e.target.value)}
-          />
+          <div>
+            {" "}
+            <input type="text" placeholder="Child's age" {...register("age")} />
+            {errors.age && <p className={css.errors}>{errors.age.message}</p>}
+          </div>
+          <div>
+            <input
+              {...register("time")}
+              type="time"
+              value={time}
+              onChange={(e) => setTime(e.target.value)}
+            />
+            {errors.time && <p className={css.errors}>{errors.time.message}</p>}
+          </div>
         </div>
         <div className={css.infoCont}>
-          <input type="email" placeholder="Email" />
-          <input type="text" placeholder="Father's or mother's name" />
-          <textarea placeholder="Comment" />
+          <input type="email" placeholder="Email" {...register("email")} />
+          {errors.email && <p className={css.errors}>{errors.email.message}</p>}
+          <input
+            type="text"
+            placeholder="Father's or mother's name"
+            {...register("parentName")}
+          />
+          {errors.parentName && (
+            <p className={css.errors}>{errors.parentName.message}</p>
+          )}
+          <textarea placeholder="Comment" {...register("comment")} />
+          {errors.comment && (
+            <p className={css.errors}>{errors.comment.message}</p>
+          )}
         </div>
-        <button className={css.makeBtn}>Send</button>
+        <button type="submit" className={css.makeBtn}>
+          Send
+        </button>
       </form>
     </div>
   );
