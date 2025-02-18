@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getNannieById, getNannies } from "./operation";
+import { getAllData, getNannieById, getNannies } from "./operation";
 type Reviews = {
   comment: string;
   rating: number;
@@ -22,6 +22,7 @@ interface INannie {
 }
 interface IniatialState {
   nannies: INannie[];
+  nanniesLength: number | null;
   favouriteNannies: INannie[];
   nannie: INannie | null;
   loading: boolean;
@@ -30,6 +31,7 @@ interface IniatialState {
 }
 const initialState: IniatialState = {
   nannies: [],
+  nanniesLength: null,
   favouriteNannies: JSON.parse(
     localStorage.getItem("favouriteNannies") || "[]"
   ),
@@ -87,6 +89,9 @@ const nanniesSlice = createSlice({
 
       .addCase(getNannieById.fulfilled, (state, action) => {
         state.nannie = action.payload;
+      })
+      .addCase(getAllData.fulfilled, (state, action) => {
+        state.nanniesLength = action.payload.total;
       });
   },
 });

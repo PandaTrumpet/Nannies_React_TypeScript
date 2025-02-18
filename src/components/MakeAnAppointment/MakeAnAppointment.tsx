@@ -17,7 +17,7 @@ const MakeAnAppointment = () => {
     time: string;
     email: string;
     parentName: string;
-    comment?: string | null;
+    comment: string;
   }
   const appointmentSchema = yup.object({
     address: yup.string().required("Address is required"),
@@ -36,7 +36,7 @@ const MakeAnAppointment = () => {
       .email("Invalid email address")
       .required("Email is required"),
     parentName: yup.string().required("Parent's name is required"),
-    comment: yup.string().notRequired(),
+    comment: yup.string().required("Comment is required"),
   });
   const {
     register,

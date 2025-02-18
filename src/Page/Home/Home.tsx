@@ -2,7 +2,21 @@ import css from "./Home.module.css";
 import background from "../../image/home_background.jpg";
 
 import { GoArrowUpRight } from "react-icons/go";
+import { useDispatch, useSelector } from "react-redux";
+
+import { useEffect } from "react";
+import { getAllData } from "../../redux/nannies/operation";
+import { AppDispatch } from "../../redux/store";
+import { length } from "../../redux/nannies/selectors";
 const Home = () => {
+  const nanniesLength = useSelector(length);
+
+  const dispatch = useDispatch<AppDispatch>();
+  useEffect(() => {
+    dispatch(getAllData());
+  }, [dispatch]);
+  console.log(nanniesLength);
+
   return (
     <div className={css.homeCont}>
       <div className={css.firstCont}>

@@ -33,6 +33,7 @@ export const getNannies = createAsyncThunk(
           id: key,
           ...snapshot.val()[key],
         }));
+
         console.log("Все полученные данные:", nanniesArray);
 
         // Выполняем сортировку на клиенте по выбранному критерию
@@ -97,7 +98,31 @@ export const getNannies = createAsyncThunk(
     }
   }
 );
+export const getNanniesLength = createAsyncThunk(
+  "nannies/getNanniesLength",
+  async (_, thunkAPI) => {
+    try {
+      const database = getDatabase();
+      // Получаем данные из корня (если данные находятся в корне)
+      const baseRef = ref(database, "/");
 
+      // Получаем все данные без лимита
+      const snapshot = await get(baseRef);
+      let nanniesArray;
+      if (snapshot.exists()) {
+        // Преобразуем объект в массив
+        nanniesArray = Object.keys(snapshot.val()).map((key) => ({
+          id: key,
+          ...snapshot.val()[key],
+        }));
+        console.log("Все полученные данные:", nanniesArray);
+        return nanniesArray;
+      }
+    } catch (error) {
+      thunkAPI.rejectWithValue(error);
+    }
+  }
+);
 type Reviews = {
   comment: string;
   rating: number;
@@ -136,3 +161,36 @@ export const getNannieById = createAsyncThunk<
     return thunkAPI.rejectWithValue(errorMessage);
   }
 });
+
+export const getAllData = createAsyncThunk(
+  "data/getAllData",
+  async (_, thunkAPI) => {
+    try {
+      const database = getDatabase();
+      // Если данные находятся в корне, используем "/"
+      const baseRef = ref(database, "/");
+
+      // Получаем все данные без ограничений
+      const snapshot = await get(baseRef);
+      if (snapshot.exists()) {
+        // Преобразуем объект в массив:
+        // Каждый ключ становится свойством id, а остальные данные копируются из объекта
+        const dataObj = snapshot.val();
+        const dataArray = Object.keys(dataObj).map((key) => ({
+          id: key,
+          ...dataObj[key],
+        }));
+        console.log("Полученные данные:", dataArray);
+        return {
+          data: dataArray,
+          total: dataArray.length,
+        };
+      } else {
+        console.log("Нет данных в базе");
+        return { data: [], total: 0 };
+      }
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);

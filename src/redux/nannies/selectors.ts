@@ -5,3 +5,4 @@ export const nannieById = (state: RootState) => state.nannies.nannie;
 export const lastKey = (state: RootState) => state.nannies.lastKey;
 export const favoriteNannies = (state: RootState) =>
   state.nannies.favouriteNannies;
+export const length = (state: RootState) => state.nannies.nanniesLength;
