@@ -14,6 +14,7 @@ import { logoutUser } from "../../redux/auth/operation";
 import { useAuth } from "../../Context/AuthContext";
 import { selectModalType } from "../../redux/modal/selectors";
 import MakeAnAppointment from "../MakeAnAppointment/MakeAnAppointment";
+import toast from "react-hot-toast";
 
 interface isActiveProps {
   isActive: boolean;
@@ -39,7 +40,7 @@ const Navigation = () => {
   }, [location.pathname]);
   const logOutHandler = () => {
     dispatch(logoutUser());
-    console.log("User logged out");
+    toast.success("User logged out");
   };
   const modalTypeSelect = useSelector(selectModalType);
   if (!isAuthReady) return null;

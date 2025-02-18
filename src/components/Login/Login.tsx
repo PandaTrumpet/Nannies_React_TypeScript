@@ -7,6 +7,8 @@ import { closeModalWindow } from "../../redux/modal/slice";
 
 import { loginUser } from "../../redux/auth/operation";
 import { AppDispatch } from "../../redux/store";
+import toast from "react-hot-toast";
+
 interface IFormInput {
   email: string;
   password: string;
@@ -29,7 +31,11 @@ const Login = () => {
   });
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    dispatch(loginUser({ email: data.email, password: data.password }));
+    dispatch(loginUser({ email: data.email, password: data.password }))
+      .unwrap()
+      .then(() => toast.success("Logged in!"))
+      .catch(() => toast.error("Failed email or password!"));
+
     console.log(data);
     dispatch(closeModalWindow());
   };

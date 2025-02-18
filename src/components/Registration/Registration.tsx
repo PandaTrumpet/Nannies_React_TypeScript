@@ -9,6 +9,7 @@ import { closeModalWindow } from "../../redux/modal/slice";
 import { registerUser } from "../../redux/auth/operation";
 import { AppDispatch } from "../../redux/store";
 import { userInfo } from "../../redux/auth/selectors";
+import toast from "react-hot-toast";
 interface IFormInput {
   name: string;
   email: string;
@@ -40,6 +41,7 @@ const Registration = () => {
       })
     );
     console.log(data);
+    toast.success("Successful registration!");
     dispatch(closeModalWindow());
   };
 
