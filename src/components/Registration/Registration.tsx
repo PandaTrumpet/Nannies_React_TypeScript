@@ -42,7 +42,9 @@ const Registration = () => {
     );
     console.log(data);
     toast.success("Successful registration!");
-    dispatch(closeModalWindow());
+    setTimeout(() => {
+      dispatch(closeModalWindow());
+    }, 1000);
   };
 
   return (

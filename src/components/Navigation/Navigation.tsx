@@ -49,60 +49,60 @@ const Navigation = () => {
       <div className={css.logoContainer}>
         <Link to="/">Nanny.Services</Link>
       </div>
-      <div className={css.loginAndLinkCont}>
-        <ul className={css.navMenuList}>
-          <NavLink to="/" className={buildLinkClass}>
-            Home
+      {/* <div className={css.loginAndLinkCont}> */}
+      <ul className={css.navMenuList}>
+        <NavLink to="/" className={buildLinkClass}>
+          Home
+        </NavLink>
+        <NavLink to="/nannies" className={buildLinkClass}>
+          Nannies
+        </NavLink>
+        {user && (
+          <NavLink to="/favorites" className={buildLinkClass}>
+            Favorites
           </NavLink>
-          <NavLink to="/nannies" className={buildLinkClass}>
-            Nannies
-          </NavLink>
-          {user && (
-            <NavLink to="/favorites" className={buildLinkClass}>
-              Favorites
-            </NavLink>
-          )}
-        </ul>
+        )}
+      </ul>
 
-        <ul className={css.registerCont}>
-          {user !== null ? (
-            <li>
-              <div className={css.userLoggedCont}>
-                <div className={css.userCont}>
-                  <div className={css.userFoto}>
-                    <img src={userFoto} alt="" />
-                  </div>
-                  <p>{user.displayName}</p>
+      <ul className={css.registerCont}>
+        {user !== null ? (
+          <li>
+            <div className={css.userLoggedCont}>
+              <div className={css.userCont}>
+                <div className={css.userFoto}>
+                  <img src={userFoto} alt="" />
                 </div>
-                <button onClick={logOutHandler}>Log out</button>
+                <p>{user.displayName}</p>
               </div>
+              <button onClick={logOutHandler}>Log out</button>
+            </div>
+          </li>
+        ) : (
+          <>
+            <li>
+              <button
+                className={css.loginBtn}
+                onClick={() => {
+                  dispatch(openModalWindow({ modalType: "login" }));
+                }}
+              >
+                Log In
+              </button>
             </li>
-          ) : (
-            <>
-              <li>
-                <button
-                  className={css.loginBtn}
-                  onClick={() => {
-                    dispatch(openModalWindow({ modalType: "login" }));
-                  }}
-                >
-                  Log In
-                </button>
-              </li>
-              <li>
-                <button
-                  className={css.registerBtn}
-                  onClick={() => {
-                    dispatch(openModalWindow({ modalType: "register" }));
-                  }}
-                >
-                  Registration
-                </button>
-              </li>
-            </>
-          )}
-        </ul>
-      </div>
+            <li>
+              <button
+                className={css.registerBtn}
+                onClick={() => {
+                  dispatch(openModalWindow({ modalType: "register" }));
+                }}
+              >
+                Registration
+              </button>
+            </li>
+          </>
+        )}
+      </ul>
+      {/* </div> */}
       {modalTypeSelect === "login" && (
         <SimpleModal>
           <Login />

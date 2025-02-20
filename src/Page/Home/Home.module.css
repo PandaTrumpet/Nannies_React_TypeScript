@@ -1,20 +1,24 @@
-.titleCont {
-    max-width: 517px;
-    /* margin: 0 auto; */
+.homeCont {
+    /* display: flex; */
+    background: #0957c3;
 
 }
 
-.homeCont {
+.centerCont {
     display: flex;
+
+    /* max-width: 1440px; */
+    margin: 0 auto;
+    /* padding-left: 6.9%; */
+
 }
 
 .firstCont {
     padding-left: 6.9%;
     width: 50%;
-    background: #0957c3;
+    /* background: #0957c3; */
     padding-top: 250px;
-    /* padding-top: 34%; */
-    /* padding-bottom: 163px; */
+
 
 }
 

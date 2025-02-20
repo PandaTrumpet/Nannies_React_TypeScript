@@ -46,19 +46,20 @@ const Nannies = () => {
 
   return (
     <div className={css.nanniesCont}>
-      <div className={css.filter}>
-        <select value={sortOption} onChange={handleSortChange}>
-          <option value="ShowAll">Show all</option>
-          <option value="AtoZ">A to Z</option>
-          <option value="ZtoA">Z to A</option>
-          <option value="LessThan10">Less than 10$</option>
-          <option value="GreaterThan10">Greater than 10$</option>
-          <option value="Popular">Popular</option>
-          <option value="NotPopular">Not popular</option>
-        </select>
-      </div>
-      <div>
-        {nannies.length !== 0 && (
+      <div className={css.nanniesCenter}>
+        <div className={css.filter}>
+          <p className={css.filterTitle}>Filter</p>
+          <select value={sortOption} onChange={handleSortChange}>
+            <option value="ShowAll">Show all</option>
+            <option value="AtoZ">A to Z</option>
+            <option value="ZtoA">Z to A</option>
+            <option value="LessThan10">Less than 10$</option>
+            <option value="GreaterThan10">Greater than 10$</option>
+            <option value="Popular">Popular</option>
+            <option value="NotPopular">Not popular</option>
+          </select>
+        </div>
+        {nannies.length !== 0 ? (
           <ul>
             {nannies.map((nannie, index) => (
               <li key={index}>
@@ -66,16 +67,29 @@ const Nannies = () => {
               </li>
             ))}
           </ul>
+        ) : (
+          <p className={css.noNannies}>Ther is no nannies</p>
         )}
-
-        <button
-          className={css.loadBtn}
-          onClick={() =>
-            dispatch(getNannies({ startKey: lastKeySelect, sortOption }))
-          }
-        >
-          More
-        </button>
+        {/* {nannies.length > 0 && (
+          <button
+            className={css.loadBtn}
+            onClick={() =>
+              dispatch(getNannies({ startKey: lastKeySelect, sortOption }))
+            }
+          >
+            More
+          </button>
+        )} */}
+        {lastKeySelect && nannies.length > 0 && (
+          <button
+            className={css.loadBtn}
+            onClick={() =>
+              dispatch(getNannies({ startKey: lastKeySelect, sortOption }))
+            }
+          >
+            More
+          </button>
+        )}
       </div>
     </div>
   );

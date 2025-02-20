@@ -14,6 +14,7 @@ import heart from "../../image/heart.svg";
 import fullHeart from "../../image/fullHeart.png";
 
 import { openModalWindow } from "../../redux/modal/slice";
+import { isLogged } from "../../redux/auth/selectors";
 
 type Reviews = {
   comment: string;
@@ -38,6 +39,7 @@ interface QuestionnaireProps {
   nannie: INannie;
 }
 const Questionnaire: React.FC<QuestionnaireProps> = ({ nannie }) => {
+  const logged = useSelector(isLogged);
   const [visibileReviews, setVisibileReviews] = useState<boolean>(false);
   const birthDate = new Date(nannie.birthday);
   const currentData = new Date();
@@ -100,11 +102,13 @@ const Questionnaire: React.FC<QuestionnaireProps> = ({ nannie }) => {
             <div onClick={() => toggleFavorite(nannie)}>
               {/* <HeartIcon /> */}
               {/* <HeartIcon/> */}
-              <img
-                src={heartFavourite ? fullHeart : heart}
-                alt="heart icon"
-                className={css.heartIcon}
-              />
+              {logged && (
+                <img
+                  src={heartFavourite ? fullHeart : heart}
+                  alt="heart icon"
+                  className={css.heartIcon}
+                />
+              )}
             </div>
           </div>
         </div>

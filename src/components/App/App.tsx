@@ -10,7 +10,7 @@ import css from "./App.module.css";
 import { Route, Routes } from "react-router-dom";
 function App() {
   return (
-    <>
+    <div className={css.containerProject}>
       <Navigation />
       <div className={css.mainContainer}>
         <Routes>
@@ -24,7 +24,7 @@ function App() {
         </Routes>
         <Toaster position="top-center" />
       </div>
-    </>
+    </div>
   );
 }
 

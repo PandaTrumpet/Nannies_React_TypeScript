@@ -8,6 +8,8 @@ import { closeModalWindow } from "../../redux/modal/slice";
 import { loginUser } from "../../redux/auth/operation";
 import { AppDispatch } from "../../redux/store";
 import toast from "react-hot-toast";
+import Navigation from "../Navigation/Navigation";
+import { useNavigate } from "react-router-dom";
 
 interface IFormInput {
   email: string;
@@ -15,6 +17,7 @@ interface IFormInput {
 }
 
 const Login = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const schema = yup.object().shape({
     email: yup.string().email("Invalid email").required("Email is required"),
@@ -33,11 +36,16 @@ const Login = () => {
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
     dispatch(loginUser({ email: data.email, password: data.password }))
       .unwrap()
-      .then(() => toast.success("Logged in!"))
+      .then(() => {
+        toast.success("Logged in!");
+        setTimeout(() => {
+          dispatch(closeModalWindow());
+        }, 500);
+        navigate("/nannies");
+      })
       .catch(() => toast.error("Failed email or password!"));
 
     console.log(data);
-    dispatch(closeModalWindow());
   };
 
   return (
