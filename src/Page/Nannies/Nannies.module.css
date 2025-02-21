@@ -35,14 +35,14 @@
     margin-bottom: 8px;
 }
 
-.filter select {
+/* .filter select {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    /* border: none; */
+
     outline: none;
     border-radius: 14px;
-    /* padding: 16px 18px 16px 18px; */
+
     padding-left: 16px;
     display: flex;
     align-items: center;
@@ -55,9 +55,9 @@
     font-size: 18px;
     line-height: 111%;
     color: #fbfbfb;
-}
+} */
 
-.filter select option {
+/* .filter select option {
 
     border-radius: 14px;
     width: 226px;
@@ -75,7 +75,16 @@
 .filter select option:hover {
 
     color: #11101c;
+} */
+.reactSelect {
+    border-radius: 14px;
+
+    width: 220px;
+    height: 48px;
+    cursor: pointer;
+
 }
+
 
 .loadBtn {
     display: flex;

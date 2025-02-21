@@ -8,7 +8,7 @@ import { closeModalWindow } from "../../redux/modal/slice";
 import { loginUser } from "../../redux/auth/operation";
 import { AppDispatch } from "../../redux/store";
 import toast from "react-hot-toast";
-import Navigation from "../Navigation/Navigation";
+
 import { useNavigate } from "react-router-dom";
 
 interface IFormInput {

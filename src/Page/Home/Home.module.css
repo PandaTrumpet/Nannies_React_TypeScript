@@ -1,5 +1,5 @@
 .homeCont {
-    /* display: flex; */
+
     background: #0957c3;
 
 }
@@ -7,16 +7,15 @@
 .centerCont {
     display: flex;
 
-    /* max-width: 1440px; */
     margin: 0 auto;
-    /* padding-left: 6.9%; */
+
 
 }
 
 .firstCont {
     padding-left: 6.9%;
     width: 50%;
-    /* background: #0957c3; */
+
     padding-top: 250px;
 
 
@@ -67,4 +66,40 @@
     display: flex;
     align-items: center;
     gap: 18px;
+}
+
+.nanniesHomeInfo {
+    display: flex;
+    border-radius: 20px;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    width: 284px;
+    height: 118px;
+    background: #fbfbfb;
+    position: absolute;
+
+    right: 7%;
+    bottom: 7%;
+}
+
+.nanniesLength {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.checkCont {
+    border-radius: 13px;
+    width: 54px;
+    height: 54px;
+    background: #0957c3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkCont img {
+    width: 16px;
+    height: 16px;
 }

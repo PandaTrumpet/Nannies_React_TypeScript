@@ -1,8 +1,6 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, NavLink } from "react-router-dom";
 import css from "./Navigation.module.css";
-import { NavLink } from "react-router-dom";
 import clsx from "clsx";
-import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { openModalWindow } from "../../redux/modal/slice";
 import SimpleModal from "../SimpleModal/SimpleModal";
@@ -16,40 +14,30 @@ import { selectModalType } from "../../redux/modal/selectors";
 import MakeAnAppointment from "../MakeAnAppointment/MakeAnAppointment";
 import toast from "react-hot-toast";
 
-interface isActiveProps {
-  isActive: boolean;
-}
 const Navigation = () => {
   const { user, isAuthReady } = useAuth();
-  console.log(user);
-
   const dispatch = useDispatch<AppDispatch>();
-  const buildLinkClass = ({ isActive }: isActiveProps) => {
-    return clsx(css.link, isActive && css.active);
-  };
-  const navRef = useRef<HTMLElement>(null);
   const location = useLocation();
-  useEffect(() => {
-    if (navRef.current) {
-      if (location.pathname === "/") {
-        navRef.current.style.background = "transparent";
-      } else {
-        navRef.current.style.background = "#0957c3";
-      }
-    }
-  }, [location.pathname]);
+
+  const buildLinkClass = ({ isActive }: { isActive: boolean }) =>
+    clsx(css.link, isActive && css.active);
+
+  // Вычисляем цвет фона в зависимости от текущего пути
+  const navBackground = location.pathname === "/" ? "transparent" : "#0957c3";
+
   const logOutHandler = () => {
     dispatch(logoutUser());
     toast.success("User logged out");
   };
+
   const modalTypeSelect = useSelector(selectModalType);
   if (!isAuthReady) return null;
+
   return (
-    <nav ref={navRef} className={css.navCont}>
+    <nav className={css.navCont} style={{ background: navBackground }}>
       <div className={css.logoContainer}>
         <Link to="/">Nanny.Services</Link>
       </div>
-      {/* <div className={css.loginAndLinkCont}> */}
       <ul className={css.navMenuList}>
         <NavLink to="/" className={buildLinkClass}>
           Home
@@ -102,7 +90,6 @@ const Navigation = () => {
           </>
         )}
       </ul>
-      {/* </div> */}
       {modalTypeSelect === "login" && (
         <SimpleModal>
           <Login />

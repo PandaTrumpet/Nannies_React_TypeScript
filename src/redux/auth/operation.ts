@@ -1,27 +1,3 @@
-// import { createAsyncThunk } from "@reduxjs/toolkit";
-// import { createUserWithEmailAndPassword } from "firebase/auth";
-// import { auth } from "../../firebase";
-// interface IAuth {
-//   email: string;
-//   password: string;
-// }
-// export const registerAuth = createAsyncThunk(
-//   "auth/register",
-//   async ({ email, password }: IAuth, thunkAPI) => {
-//     try {
-//       const userCredential = await createUserWithEmailAndPassword(
-//         auth,
-//         email,
-//         password
-//       );
-//       console.log("User registered", userCredential.user);
-//       return userCredential.user;
-//     } catch (error: unknown) {
-//       return thunkAPI.rejectWithValue(error);
-//     }
-//   }
-// );
-
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
   createUserWithEmailAndPassword,
@@ -59,8 +35,10 @@ export const registerUser = createAsyncThunk(
         photoURL: user.photoURL || null,
         accessToken,
       };
-    } catch (error: any) {
-      return rejectWithValue(error.message);
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : "Unknown error";
+      return rejectWithValue(errorMessage);
     }
   }
 );
@@ -88,8 +66,10 @@ export const loginUser = createAsyncThunk(
         photoURL: user.photoURL || null,
         accessToken,
       };
-    } catch (error: any) {
-      return rejectWithValue(error.message);
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : "Unknown error";
+      return rejectWithValue(errorMessage);
     }
   }
 );
