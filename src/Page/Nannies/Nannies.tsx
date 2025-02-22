@@ -10,7 +10,6 @@ import Select from "react-select";
 const Nannies = () => {
   const dispatch = useDispatch<AppDispatch>();
 
-  // Локальное состояние для сортировки
   const [sortOption, setSortOption] = useState<
     | "AtoZ"
     | "ZtoA"
@@ -30,7 +29,6 @@ const Nannies = () => {
     }
   }, [dispatch, nannies.length, sortOption]);
 
-  // Опции для react-select
   const options = [
     { value: "ShowAll", label: "Show all" },
     { value: "AtoZ", label: "A to Z" },
@@ -61,13 +59,13 @@ const Nannies = () => {
             value={options.find((option) => option.value === sortOption)}
             onChange={handleSelectChange}
             options={options}
+            isSearchable={false}
             className={css.reactSelect}
             classNamePrefix="react-select"
             styles={{
               control: (provided) => ({
                 ...provided,
                 borderRadius: "14px",
-                // border: "1px solid #0957c3",
                 cursor: "pointer",
                 outlineColor: "transparent",
                 padding: "8px 12px",
@@ -103,7 +101,7 @@ const Nannies = () => {
               }),
               dropdownIndicator: (provided) => ({
                 ...provided,
-                color: "#fff", // делаем стрелку белой
+                color: "#fff",
               }),
             }}
           />
