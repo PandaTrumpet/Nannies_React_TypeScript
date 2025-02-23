@@ -1,13 +1,17 @@
 import { useState } from "react";
 import css from "./MakeAnAppointment.module.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectModalData } from "../../redux/modal/selectors";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import toast from "react-hot-toast";
+import { AppDispatch } from "../../redux/store";
+import { closeModalWindow } from "../../redux/modal/slice";
 const MakeAnAppointment = () => {
   const [time, setTime] = useState<string>("");
   const nannie = useSelector(selectModalData);
+  const dispatch = useDispatch<AppDispatch>();
   interface IFormInput {
     address: string;
     phone: string;
@@ -49,6 +53,9 @@ const MakeAnAppointment = () => {
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     console.log(data);
+
+    toast.success("Appointment sent!");
+    dispatch(closeModalWindow());
   };
   return (
     <div className={css.appointmentCont}>
