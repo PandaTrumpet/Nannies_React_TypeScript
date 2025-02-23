@@ -1,50 +1,43 @@
-# React + TypeScript + Vite
+📌 Про проєкт
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Nanny.Services – це зручний веб-застосунок для пошуку нянь. Користувачі можуть реєструватися, переглядати профілі нянь, додавати обраних фахівців до "Вибраних", а також фільтрувати нянь за різними критеріями та оформляти замовлення на їхні послуги.
 
-Currently, two official plugins are available:
+🚀 Технології
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Проєкт розроблено з використанням сучасного стека технологій:
 
-## Expanding the ESLint configuration
+React – створення інтерфейсу користувача
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+TypeScript – статична типізація для покращення якості коду
 
-- Configure the top-level `parserOptions` property like this:
+CSS – стилізація компонентів та адаптивний дизайн
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+🔧 Функціонал
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+👤 Реєстрація та авторизація
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+Створення нового облікового запису користувача
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+Вхід у систему через логін та пароль
+
+
+🔍 Пошук і фільтрація
+
+Перегляд списку доступних нянь із детальною інформацією
+
+Фільтрація за різними критеріями, такими як вік, досвід, ціновий діапазон тощо
+
+
+⭐ Вибрані няні
+
+Додавання нянь у "Вибрані" для зручного доступу
+
+Видалення нянь зі списку вибраних
+
+🛒 Оформлення замовлення
+
+Надсилання запиту на послуги няні
+
+Можливість залишати коментарі або уточнення до заявки
+
+Отримання підтвердження від няні
