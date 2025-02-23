@@ -127,6 +127,12 @@
     justify-content: center;
     border: none;
     margin-top: 24px;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.makeBtn:hover {
+    background: #074fb3;
 }
 
 .appointmentForm {

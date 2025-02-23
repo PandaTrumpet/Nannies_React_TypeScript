@@ -67,6 +67,11 @@
     line-height: 1.25%;
     letter-spacing: -0.01em;
     color: #fbfbfb;
+    transition: all 0.3s;
+}
+
+.loginBtn:hover {
+    background: #074fb3;
 }
 
 .error {

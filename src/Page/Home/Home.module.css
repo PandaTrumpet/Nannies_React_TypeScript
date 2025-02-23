@@ -55,6 +55,13 @@
     display: flex;
     align-items: center;
     gap: 18px;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.homeBtn:hover {
+    background: #074fb3;
+
 }
 
 .nanniesHomeInfo {

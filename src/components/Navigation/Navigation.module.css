@@ -55,10 +55,24 @@
     letter-spacing: -0.01em;
     color: #fbfbfb;
     cursor: pointer;
+    transition: all 0.3s;
 
 }
 
-.registerBtn {
+.loginBtn:hover,
+.registerBtn:hover {
+    background-color: #074fb3;
+}
+
+.logOutBtn {
+    transition: all 0.3s;
+}
+
+.logOutBtn:hover {
+    background-color: #074fb3;
+}
+
+.registerBtn .registerBtn {
     width: 168px;
 }
 

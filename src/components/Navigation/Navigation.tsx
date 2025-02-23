@@ -61,7 +61,9 @@ const Navigation = () => {
                 </div>
                 <p>{user.displayName}</p>
               </div>
-              <button onClick={logOutHandler}>Log out</button>
+              <button onClick={logOutHandler} className={css.logOutBtn}>
+                Log out
+              </button>
             </div>
           </li>
         ) : (

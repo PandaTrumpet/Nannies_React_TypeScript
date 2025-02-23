@@ -7,9 +7,10 @@ import { useEffect } from "react";
 import { getAllData } from "../../redux/nannies/operation";
 import { AppDispatch } from "../../redux/store";
 import { length } from "../../redux/nannies/selectors";
+import { useNavigate } from "react-router-dom";
 const Home = () => {
   const nanniesLength = useSelector(length);
-
+  const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
     dispatch(getAllData());
@@ -28,7 +29,10 @@ const Home = () => {
             <p className={css.homeText}>
               Find Babysitters Online for All Occasions
             </p>
-            <button className={css.homeBtn}>
+            <button
+              className={css.homeBtn}
+              onClick={() => navigate("/nannies")}
+            >
               Get Started
               <GoArrowUpRight color="#fbfbfb" size={24} />
             </button>
