@@ -22,7 +22,6 @@ const Navigation = () => {
   const buildLinkClass = ({ isActive }: { isActive: boolean }) =>
     clsx(css.link, isActive && css.active);
 
-  // Вычисляем цвет фона в зависимости от текущего пути
   const navBackground = location.pathname === "/" ? "transparent" : "#0957c3";
 
   const logOutHandler = () => {

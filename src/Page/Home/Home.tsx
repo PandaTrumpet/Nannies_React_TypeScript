@@ -1,6 +1,5 @@
 import css from "./Home.module.css";
 import background from "../../image/home_background.jpg";
-
 import { GoArrowUpRight } from "react-icons/go";
 import { useDispatch, useSelector } from "react-redux";
 import checkFoto from "../../image/check.png";

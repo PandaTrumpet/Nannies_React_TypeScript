@@ -4,8 +4,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { closeModalWindow } from "../../redux/modal/slice";
-// import { createUserWithEmailAndPassword } from "firebase/auth";
-// import { auth } from "../../firebase";
 import { registerUser } from "../../redux/auth/operation";
 import { AppDispatch } from "../../redux/store";
 import { userInfo } from "../../redux/auth/selectors";

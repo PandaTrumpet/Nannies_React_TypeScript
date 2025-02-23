@@ -112,7 +112,6 @@
 
 .modal-content-close {
     animation: slideOut 0.3s forwards;
-    /* Плавное закрытие модального контента */
 }
 
 @media(max-width:1440px) {}

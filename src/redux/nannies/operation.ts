@@ -21,22 +21,17 @@ export const getNannies = createAsyncThunk(
     try {
       const { startKey, sortOption } = params;
       const database = getDatabase();
-      // Получаем данные из корня (если данные находятся в корне)
+
       const baseRef = ref(database, "/");
 
-      // Получаем все данные без лимита
       const snapshot = await get(baseRef);
 
       if (snapshot.exists()) {
-        // Преобразуем объект в массив
         let nanniesArray = Object.keys(snapshot.val()).map((key) => ({
           id: key,
           ...snapshot.val()[key],
         }));
 
-        console.log("Все полученные данные:", nanniesArray);
-
-        // Выполняем сортировку на клиенте по выбранному критерию
         switch (sortOption) {
           case "AtoZ":
             nanniesArray.sort((a, b) => a.name.localeCompare(b.name));
@@ -64,15 +59,12 @@ export const getNannies = createAsyncThunk(
             break;
           case "ShowAll":
           default:
-            // Можно оставить порядок, как есть
             break;
         }
 
-        // Клиентская пагинация: разбиваем отсортированный массив на страницы по 3 элемента
         const pageSize = 3;
         let startIndex = 0;
         if (startKey) {
-          // Найти индекс элемента с ключом startKey
           const index = nanniesArray.findIndex((item) => item.id === startKey);
           startIndex = index !== -1 ? index + 1 : 0;
         }
@@ -103,19 +95,17 @@ export const getNanniesLength = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const database = getDatabase();
-      // Получаем данные из корня (если данные находятся в корне)
+
       const baseRef = ref(database, "/");
 
-      // Получаем все данные без лимита
       const snapshot = await get(baseRef);
       let nanniesArray;
       if (snapshot.exists()) {
-        // Преобразуем объект в массив
         nanniesArray = Object.keys(snapshot.val()).map((key) => ({
           id: key,
           ...snapshot.val()[key],
         }));
-        console.log("Все полученные данные:", nanniesArray);
+
         return nanniesArray;
       }
     } catch (error) {
@@ -167,26 +157,22 @@ export const getAllData = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const database = getDatabase();
-      // Если данные находятся в корне, используем "/"
+
       const baseRef = ref(database, "/");
 
-      // Получаем все данные без ограничений
       const snapshot = await get(baseRef);
       if (snapshot.exists()) {
-        // Преобразуем объект в массив:
-        // Каждый ключ становится свойством id, а остальные данные копируются из объекта
         const dataObj = snapshot.val();
         const dataArray = Object.keys(dataObj).map((key) => ({
           id: key,
           ...dataObj[key],
         }));
-        console.log("Полученные данные:", dataArray);
+
         return {
           data: dataArray,
           total: dataArray.length,
         };
       } else {
-        console.log("Нет данных в базе");
         return { data: [], total: 0 };
       }
     } catch (error) {

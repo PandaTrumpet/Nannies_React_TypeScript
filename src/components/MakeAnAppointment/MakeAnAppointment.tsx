@@ -8,8 +8,6 @@ import * as yup from "yup";
 const MakeAnAppointment = () => {
   const [time, setTime] = useState<string>("");
   const nannie = useSelector(selectModalData);
-  // console.log(nannie);
-  const [phone, setPhone] = useState<string>("+380");
   interface IFormInput {
     address: string;
     phone: string;
@@ -24,8 +22,7 @@ const MakeAnAppointment = () => {
     phone: yup
       .string()
       .required("Phone is required")
-      // Проверяем, что номер начинается с +380 и содержит в сумме 13 символов (например, +380XXXXXXXXX)
-      .matches(/^\+380\d{9}$/, "Wrong format!"),
+      .matches(/^\+380\d+$/, "Only numbers"),
     age: yup
       .number()
       .typeError("Child's age must be a number")
@@ -45,6 +42,9 @@ const MakeAnAppointment = () => {
   } = useForm<IFormInput>({
     resolver: yupResolver(appointmentSchema),
     mode: "onChange",
+    defaultValues: {
+      phone: "+380",
+    },
   });
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
@@ -79,15 +79,7 @@ const MakeAnAppointment = () => {
             )}
           </div>
           <div>
-            <input
-              {...register("phone")}
-              type="text"
-              value={phone}
-              onChange={(e) => {
-                console.log(phone);
-                setPhone(e.target.value);
-              }}
-            />
+            <input {...register("phone")} type="text" />
             {errors.phone && (
               <p className={css.errors}>{errors.phone.message}</p>
             )}

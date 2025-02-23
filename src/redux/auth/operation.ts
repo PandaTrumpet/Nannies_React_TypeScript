@@ -23,9 +23,9 @@ export const registerUser = createAsyncThunk(
         email,
         password
       );
-      //   console.log("User registered", userCredential.user);
+
       const user = userCredential.user;
-      // console.log(user);
+
       const accessToken = await user.getIdToken();
       await updateProfile(user, { displayName: name });
       return {
@@ -43,7 +43,6 @@ export const registerUser = createAsyncThunk(
   }
 );
 
-// Вход
 export const loginUser = createAsyncThunk(
   "auth/loginUser",
   async (
@@ -74,7 +73,6 @@ export const loginUser = createAsyncThunk(
   }
 );
 
-// Выход
 export const logoutUser = createAsyncThunk("auth/logoutUser", async () => {
   await signOut(auth);
 });

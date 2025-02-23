@@ -71,14 +71,12 @@ const nanniesSlice = createSlice({
 
       .addCase(getNannies.fulfilled, (state, action) => {
         state.loading = false;
-        // Если startKey равен null, значит, это новый запрос (например, при смене сортировки)
+
         if (!action.meta.arg.startKey) {
           state.nannies = action.payload.data;
         } else {
-          // Это подгрузка: объединяем уже загруженные данные с новыми
           const combined = [...state.nannies, ...action.payload.data];
 
-          // Убираем дубликаты по id
           state.nannies = combined.filter(
             (item, index, self) =>
               index === self.findIndex((t) => t.id === item.id)

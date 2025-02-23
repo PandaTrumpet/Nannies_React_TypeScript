@@ -4,11 +4,9 @@ import * as yup from "yup";
 import css from "./Login.module.css";
 import { useDispatch } from "react-redux";
 import { closeModalWindow } from "../../redux/modal/slice";
-
 import { loginUser } from "../../redux/auth/operation";
 import { AppDispatch } from "../../redux/store";
 import toast from "react-hot-toast";
-
 import { useNavigate } from "react-router-dom";
 
 interface IFormInput {
@@ -40,7 +38,7 @@ const Login = () => {
         toast.success("Logged in!");
         setTimeout(() => {
           dispatch(closeModalWindow());
-        }, 500);
+        }, 300);
         navigate("/nannies");
       })
       .catch(() => toast.error("Failed email or password!"));

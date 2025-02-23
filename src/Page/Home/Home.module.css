@@ -1,28 +1,19 @@
 .homeCont {
-
     background: #0957c3;
-
 }
 
 .centerCont {
     display: flex;
-
     margin: 0 auto;
-
-
 }
 
 .firstCont {
     padding-left: 6.9%;
     width: 50%;
-
     padding-top: 250px;
-
-
 }
 
 .homeTitle {
-
     font-weight: 500;
     font-size: 70px;
     line-height: 100%;
@@ -47,9 +38,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-color: rgba(18, 20, 23, 0.6);
-
     background-blend-mode: multiply;
-
 }
 
 .homeBtn {
@@ -78,7 +67,6 @@
     height: 118px;
     background: #fbfbfb;
     position: absolute;
-
     right: 7%;
     bottom: 7%;
 }

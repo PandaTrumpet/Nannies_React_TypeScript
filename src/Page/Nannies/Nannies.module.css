@@ -6,9 +6,7 @@
     padding-right: 6.9%;
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     align-items: center;
-    /* max-width: 1440px; */
 }
 
 .nanniesCenter {
@@ -35,54 +33,11 @@
     margin-bottom: 8px;
 }
 
-/* .filter select {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-
-    outline: none;
-    border-radius: 14px;
-
-    padding-left: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 226px;
-    background: #0957c3;
-    height: 48px;
-
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 111%;
-    color: #fbfbfb;
-} */
-
-/* .filter select option {
-
-    border-radius: 14px;
-    width: 226px;
-    height: 244px;
-    box-shadow: 0 20px 69px 0 rgba(0, 0, 0, 0.07);
-    background: #fff;
-    font-family: var(--font-family);
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 111%;
-    color: rgba(17, 16, 28, 0.3);
-    outline: none;
-}
-
-.filter select option:hover {
-
-    color: #11101c;
-} */
 .reactSelect {
     border-radius: 14px;
-
     width: 220px;
     height: 48px;
     cursor: pointer;
-
 }
 
 

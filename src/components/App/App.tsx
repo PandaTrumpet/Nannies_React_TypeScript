@@ -1,13 +1,19 @@
-import Favorites from "../../Page/Favorites/Favorites";
-import Home from "../../Page/Home/Home";
-import Nannies from "../../Page/Nannies/Nannies";
-import RestrictedRout from "../../Page/RestrictedRout";
 import { Toaster } from "react-hot-toast";
-// import MakeAnAppointment from "../MakeAnAppointment/MakeAnAppointment";
 import Navigation from "../Navigation/Navigation";
-// import GoogleAuth from "../GoogleAuth/GoogleAuth.jsx";
 import css from "./App.module.css";
 import { Route, Routes } from "react-router-dom";
+import { lazy } from "react";
+
+const Favorites = lazy(() => import("../../Page/Favorites/Favorites"));
+const Home = lazy(() => import("../../Page/Home/Home"));
+const Nannies = lazy(
+  () => import("../../Page/Nannies/Nannies" /* webpackChunkName: "Nannies" */)
+);
+const RestrictedRout = lazy(
+  () =>
+    import("../../Page/RestrictedRout" /* webpackChunkName: "RestrictedRout" */)
+);
+
 function App() {
   return (
     <div className={css.containerProject}>

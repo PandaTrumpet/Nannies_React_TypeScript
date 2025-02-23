@@ -1,7 +1,6 @@
 import css from "./Questionnaire.module.css";
 import { SlLocationPin } from "react-icons/sl";
 import { MdOutlineStarPurple500 } from "react-icons/md";
-
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../redux/store";
@@ -12,9 +11,7 @@ import {
 import { favoriteNannies } from "../../redux/nannies/selectors";
 import heart from "../../image/heart.svg";
 import fullHeart from "../../image/fullHeart.png";
-
 import { openModalWindow } from "../../redux/modal/slice";
-
 import { useAuth } from "../../Context/AuthContext";
 
 type Reviews = {
@@ -101,8 +98,6 @@ const Questionnaire: React.FC<QuestionnaireProps> = ({ nannie }) => {
               </div>
             </div>
             <div onClick={() => toggleFavorite(nannie)}>
-              {/* <HeartIcon /> */}
-              {/* <HeartIcon/> */}
               {user && (
                 <img
                   src={heartFavourite ? fullHeart : heart}

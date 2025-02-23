@@ -1,7 +1,6 @@
 import { ReactNode, useEffect, useState } from "react";
 import { MdOutlineClose } from "react-icons/md";
 import "./SimpleModal.css";
-
 import { useDispatch, useSelector } from "react-redux";
 import { closeModalWindow } from "../../redux/modal/slice.js";
 import { selectOpenModal } from "../../redux/modal/selectors.js";
@@ -15,35 +14,33 @@ const SimpleModal: React.FC<SimpleModalProps> = ({ children }) => {
   const selectModal = useSelector(selectOpenModal);
   const dispatch = useDispatch();
   useEffect(() => {
-    // Логика для закрытия окна при нажатии клавиши Esc
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        closedModal(); // Закрываем модальное окно
+        closedModal();
       }
     };
 
-    // Добавляем слушатель события на нажатие клавиш
     if (selectModal) {
       document.addEventListener("keydown", handleKeyDown);
     }
 
-    // Убираем слушатель при закрытии окна или при размонтировании компонента
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectModal]);
 
   const closedModal = () => {
-    setClosing(true); // Начинаем анимацию закрытия
+    setClosing(true);
     setTimeout(() => {
       dispatch(closeModalWindow());
       setClosing(false);
-    }, 300); // Таймаут для анимации закрытия (0.3s)
+    }, 300);
   };
 
   useEffect(() => {
     if (!selectModal) {
-      setClosing(false); // Если модальное окно закрыто, сбрасываем анимацию
+      setClosing(false);
     }
   }, [selectModal]);
 
