@@ -150,7 +150,6 @@ const Questionnaire: React.FC<QuestionnaireProps> = ({ nannie }) => {
             <ul className={css.reviewList}>
               {reviews.length !== 0 &&
                 reviews.map((el, index) => {
-                  console.log(el);
                   return (
                     <li key={index} className={css.reviewItem}>
                       <div className={css.reviewerCont}>

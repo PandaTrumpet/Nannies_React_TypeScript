@@ -15,7 +15,6 @@ const Home = () => {
   useEffect(() => {
     dispatch(getAllData());
   }, [dispatch]);
-  console.log(nanniesLength);
 
   return (
     <div className={css.homeCont}>

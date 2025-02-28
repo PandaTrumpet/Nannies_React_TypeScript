@@ -42,8 +42,6 @@ const Login = () => {
         navigate("/nannies");
       })
       .catch(() => toast.error("Failed email or password!"));
-
-    console.log(data);
   };
 
   return (

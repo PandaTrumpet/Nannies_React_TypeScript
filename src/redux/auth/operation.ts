@@ -56,7 +56,7 @@ export const loginUser = createAsyncThunk(
         password
       );
       const user = userCredential.user;
-      console.log(user);
+
       const accessToken = await user.getIdToken();
       return {
         uid: user.uid,

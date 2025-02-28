@@ -52,10 +52,21 @@ const MakeAnAppointment = () => {
   });
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-    console.log(data);
-
-    toast.success("Appointment sent!");
-    dispatch(closeModalWindow());
+    if (
+      data.phone.length > 0 &&
+      data.address.length > 0 &&
+      data.age > 0 &&
+      data.time.length > 0 &&
+      data.email.length > 0 &&
+      data.parentName.length > 0 &&
+      data.comment.length > 0
+    ) {
+      toast.success("Appointment sent!");
+      dispatch(closeModalWindow());
+    } else {
+      toast.error("Fill in all fields correctly!");
+      dispatch(closeModalWindow());
+    }
   };
   return (
     <div className={css.appointmentCont}>

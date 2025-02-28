@@ -5,7 +5,6 @@ import css from "./Favorites.module.css";
 
 const Favorites = () => {
   const favourite = useSelector(favoriteNannies);
-  console.log(favourite);
 
   return (
     <div className={css.favouriteCont}>
