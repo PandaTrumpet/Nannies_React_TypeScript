@@ -198,7 +198,7 @@
     text-decoration: none;
 }
 
-/* При наведении на ссылку */
+
 .navMenuListHidden a:hover {
     color: #ffcc00;
 }
