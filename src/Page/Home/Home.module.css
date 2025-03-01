@@ -98,3 +98,193 @@
     width: 16px;
     height: 16px;
 }
+
+
+
+@media (max-width: 1200px) {
+    .homeTitle {
+        font-size: 60px;
+    }
+
+    .homeText {
+        font-size: 24px;
+    }
+
+    .firstCont {
+        padding-top: 200px;
+    }
+
+    .homeBtn {
+        font-size: 18px;
+        padding: 16px 40px;
+        min-width: 200px;
+    }
+
+    .nanniesHomeInfo {
+        width: 260px;
+        height: 100px;
+    }
+
+    .checkCont {
+        width: 50px;
+        height: 50px;
+    }
+
+    .checkCont img {
+        width: 14px;
+        height: 14px;
+    }
+}
+
+@media (max-width: 992px) {
+    .centerCont {
+        flex-direction: column;
+    }
+
+    .firstCont {
+        width: 100%;
+        text-align: center;
+        padding: 150px 5%;
+    }
+
+    .homeTitle {
+        font-size: 50px;
+    }
+
+    .homeText {
+        font-size: 22px;
+    }
+
+    .homeBtn {
+        font-size: 18px;
+        padding: 14px 36px;
+        min-width: 180px;
+        margin: 0 auto;
+    }
+
+    .secondCont {
+        width: 100%;
+        height: 60vh;
+        position: relative;
+    }
+
+    .nanniesHomeInfo {
+        right: 50%;
+        bottom: 10%;
+        transform: translateX(50%);
+    }
+}
+
+@media (max-width: 768px) {
+    .firstCont {
+        padding-top: 120px;
+    }
+
+    .homeTitle {
+        font-size: 42px;
+    }
+
+    .homeText {
+        font-size: 20px;
+    }
+
+    .homeBtn {
+        font-size: 16px;
+        padding: 12px 30px;
+        min-width: 160px;
+    }
+
+    .nanniesHomeInfo {
+        width: 240px;
+        height: 90px;
+    }
+
+    .checkCont {
+        width: 45px;
+        height: 45px;
+    }
+
+    .checkCont img {
+        width: 12px;
+        height: 12px;
+    }
+}
+
+@media (max-width: 576px) {
+    .firstCont {
+        padding: 100px 5%;
+    }
+
+    .homeTitle {
+        font-size: 36px;
+    }
+
+    .homeText {
+        font-size: 18px;
+    }
+
+    .homeBtn {
+        font-size: 14px;
+        padding: 10px 24px;
+        min-width: 140px;
+    }
+
+    .secondCont {
+        height: 50vh;
+    }
+
+    .nanniesHomeInfo {
+        width: 220px;
+        height: 80px;
+    }
+
+    .nanniesLength p {
+        font-size: 14px;
+    }
+
+    .checkCont {
+        width: 40px;
+        height: 40px;
+    }
+
+    .checkCont img {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+@media (max-width: 420px) {
+    .homeTitle {
+        font-size: 32px;
+    }
+
+    .homeText {
+        font-size: 16px;
+    }
+
+    .homeBtn {
+        font-size: 12px;
+        padding: 8px 20px;
+        min-width: 120px;
+    }
+
+    .nanniesHomeInfo {
+        width: 200px;
+        height: 70px;
+        gap: 10px;
+    }
+
+    .nanniesLength p {
+        font-size: 12px;
+    }
+
+    .checkCont {
+        width: 35px;
+        height: 35px;
+    }
+
+    .checkCont img {
+        width: 9px;
+        height: 9px;
+    }
+}

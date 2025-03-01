@@ -17,7 +17,6 @@
 }
 
 .filter {
-
     margin-left: 24px;
     margin-bottom: 32px;
     align-self: flex-start;
@@ -61,4 +60,149 @@
 
 .noNannies {
     margin-left: 24px;
+}
+
+@media (max-width: 1200px) {
+    .nanniesCenter {
+        width: 90%;
+    }
+
+    .reactSelect {
+        width: 200px;
+        height: 44px;
+    }
+
+    .loadBtn {
+        padding: 12px 35px;
+        width: 150px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .nanniesCont {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .nanniesCenter {
+        width: 100%;
+        align-items: center;
+    }
+
+    .filter {
+        width: 100%;
+
+        margin-left: 0;
+    }
+
+    .reactSelect {
+        width: 180px;
+        height: 42px;
+        font-size: 16px;
+    }
+
+    .loadBtn {
+        padding: 10px 30px;
+        width: 140px;
+    }
+
+    .noNannies {
+        text-align: center;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .nanniesCont {
+        margin-top: 90px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    .filterTitle {
+        font-size: 12px;
+    }
+
+    .reactSelect {
+        width: 160px;
+        height: 40px;
+        font-size: 14px;
+    }
+
+    .loadBtn {
+        padding: 8px 25px;
+        width: 130px;
+        font-size: 0.85rem;
+    }
+
+    .noNannies {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 576px) {
+    .nanniesCont {
+        margin-top: 70px;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        padding-left: 3%;
+        padding-right: 3%;
+    }
+
+    .filter {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .filterTitle {
+        font-size: 12px;
+        margin-bottom: 5px;
+    }
+
+    .reactSelect {
+        width: 150px;
+        height: 38px;
+        font-size: 13px;
+    }
+
+    .loadBtn {
+        padding: 8px 20px;
+        width: 120px;
+        font-size: 0.8rem;
+    }
+
+    .noNannies {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 420px) {
+    .nanniesCont {
+        margin-top: 60px;
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
+    .filterTitle {
+        font-size: 11px;
+    }
+
+    .reactSelect {
+        width: 140px;
+        height: 36px;
+        font-size: 12px;
+    }
+
+    .loadBtn {
+        padding: 6px 18px;
+        width: 110px;
+        font-size: 0.75rem;
+    }
+
+    .noNannies {
+        font-size: 12px;
+    }
 }

@@ -167,3 +167,192 @@
     margin-top: 5px;
     margin-left: 5px;
 }
+
+@media (max-width: 1200px) {
+    .appointmentCont {
+        width: 90%;
+        max-width: 450px;
+    }
+
+    .appointTitleCont h2 {
+        font-size: 2rem;
+    }
+
+    .appointTitleCont p {
+        font-size: 0.9rem;
+    }
+
+    .contactCont input,
+    .timeCont input,
+    .infoCont input,
+    .infoCont textarea {
+        width: 100%;
+        font-size: 16px;
+    }
+
+    .infoCont textarea {
+        padding: 16px 18px 60px 18px;
+    }
+
+    .makeBtn {
+        padding: 14px 0;
+        width: 100%;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .appointmentCont {
+        width: 85%;
+    }
+
+    .appointTitleCont h2 {
+        font-size: 1.8rem;
+    }
+
+    .appointTitleCont p {
+        font-size: 0.85rem;
+    }
+
+    .contactCont,
+    .timeCont {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .contactCont input,
+    .timeCont input {
+        padding: 14px 16px;
+    }
+
+    .infoCont input,
+    .infoCont textarea {
+        font-size: 15px;
+        padding: 14px 16px;
+    }
+
+    .infoCont textarea {
+        padding: 14px 16px 50px 16px;
+    }
+
+    .makeBtn {
+        font-size: 0.95rem;
+        padding: 12px 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .appointmentCont {
+        width: 95%;
+    }
+
+    .appointTitleCont h2 {
+        font-size: 1.6rem;
+    }
+
+    .appointTitleCont p {
+        font-size: 0.8rem;
+    }
+
+    .contactCont input,
+    .timeCont input {
+        padding: 12px 14px;
+    }
+
+    .infoCont input,
+    .infoCont textarea {
+        font-size: 14px;
+        padding: 12px 14px;
+    }
+
+    .infoCont textarea {
+        padding: 12px 14px 40px 14px;
+    }
+
+    .makeBtn {
+        font-size: 0.9rem;
+        padding: 10px 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .appointmentCont {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .appointTitleCont h2 {
+        font-size: 1.4rem;
+        text-align: center;
+    }
+
+    .appointTitleCont p {
+        font-size: 0.75rem;
+        text-align: center;
+    }
+
+    .nannieInfo {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .nannieFoto {
+        width: 40px;
+        height: 40px;
+    }
+
+    .contactCont,
+    .timeCont {
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .contactCont input,
+    .timeCont input,
+    .infoCont input,
+    .infoCont textarea {
+        font-size: 13px;
+        padding: 10px 12px;
+    }
+
+    .infoCont textarea {
+        padding: 10px 12px 30px 12px;
+    }
+
+    .makeBtn {
+        font-size: 0.85rem;
+        padding: 8px 0;
+    }
+}
+
+@media (max-width: 420px) {
+    .appointmentCont {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .appointTitleCont h2 {
+        font-size: 1.2rem;
+    }
+
+    .appointTitleCont p {
+        font-size: 0.7rem;
+    }
+
+    .contactCont input,
+    .timeCont input,
+    .infoCont input,
+    .infoCont textarea {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+
+    .infoCont textarea {
+        padding: 8px 10px 25px 10px;
+    }
+
+    .makeBtn {
+        font-size: 0.8rem;
+        padding: 6px 0;
+    }
+}

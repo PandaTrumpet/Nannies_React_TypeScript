@@ -236,3 +236,306 @@
     stroke: #11101c;
     cursor: pointer;
 }
+
+@media (max-width: 1200px) {
+    .questionnaireCont {
+        max-width: 100%;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .fotoCont {
+        min-width: 100px;
+        height: 100px;
+    }
+
+    .fotoNannie {
+        min-width: 80px;
+        height: 80px;
+    }
+
+    .nannieName h3 {
+        font-size: 22px;
+    }
+
+    .titleCont {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .secondContTitle {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .descriptionNannieCont {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .experienceCont {
+        justify-content: center;
+    }
+
+    .mainReviewCont button {
+        padding: 12px 24px;
+        width: 200px;
+    }
+}
+
+@media (max-width: 992px) {
+    .questionnaireCont {
+        padding: 20px;
+    }
+
+    .fotoCont {
+        min-width: 90px;
+        height: 90px;
+    }
+
+    .fotoNannie {
+        min-width: 70px;
+        height: 70px;
+    }
+
+    .nannieName h3 {
+        font-size: 20px;
+    }
+
+    .secondContTitle {
+        gap: 12px;
+    }
+
+    .descriptionNannieCont {
+        gap: 6px;
+    }
+
+    .experienceCont {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .age,
+    .experience,
+    .kidsAgeCont,
+    .charactersCont,
+    .educationCont {
+        padding: 6px 12px;
+    }
+
+    .mainReviewCont button {
+        width: 180px;
+        font-size: 0.9rem;
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .questionnaireCont {
+        padding: 16px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .fotoCont {
+        min-width: 80px;
+        height: 80px;
+    }
+
+    .fotoNannie {
+        min-width: 60px;
+        height: 60px;
+    }
+
+    .nannieName h3 {
+        font-size: 18px;
+    }
+
+    .titleCont {
+        margin-bottom: 20px;
+    }
+
+    .secondContTitle {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .descriptionNannieCont {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .experienceCont {
+        text-align: center;
+    }
+
+    .description {
+        font-size: 0.9rem;
+        margin-bottom: 14px;
+    }
+
+    .moreLink {
+        font-size: 0.9rem;
+    }
+
+    .reviewItem {
+        gap: 12px;
+    }
+
+    .mainReviewCont {
+        margin-top: 32px;
+    }
+
+    .mainReviewCont button {
+        width: 160px;
+        font-size: 0.85rem;
+        padding: 8px 16px;
+    }
+
+    .heartIcon {
+        width: 22px;
+        height: 22px;
+    }
+}
+
+@media (max-width: 576px) {
+    .questionnaireCont {
+        padding: 12px;
+    }
+
+    .fotoCont {
+        min-width: 70px;
+        height: 70px;
+    }
+
+    .fotoNannie {
+        min-width: 50px;
+        height: 50px;
+    }
+
+    .nannieName h3 {
+        font-size: 16px;
+    }
+
+    .titleCont {
+        margin-bottom: 16px;
+    }
+
+    .secondContTitle {
+        gap: 8px;
+    }
+
+    .descriptionNannieCont {
+        font-size: 14px;
+    }
+
+    .age,
+    .experience,
+    .kidsAgeCont,
+    .charactersCont,
+    .educationCont {
+        padding: 4px 8px;
+        font-size: 14px;
+    }
+
+    .description {
+        font-size: 0.85rem;
+        margin-bottom: 10px;
+    }
+
+    .moreLink {
+        font-size: 0.85rem;
+    }
+
+    .reviewItem {
+        gap: 10px;
+    }
+
+    .mainReviewCont {
+        margin-top: 24px;
+    }
+
+    .mainReviewCont button {
+        width: 140px;
+        font-size: 0.8rem;
+        padding: 6px 14px;
+    }
+
+    .heartIcon {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media (max-width: 420px) {
+    .questionnaireCont {
+        padding: 10px;
+    }
+
+    .fotoCont {
+        min-width: 60px;
+        height: 60px;
+    }
+
+    .fotoNannie {
+        min-width: 45px;
+        height: 45px;
+    }
+
+    .nannieName h3 {
+        font-size: 14px;
+    }
+
+    .titleCont {
+        margin-bottom: 12px;
+    }
+
+    .secondContTitle {
+        gap: 6px;
+    }
+
+    .descriptionNannieCont {
+        font-size: 12px;
+    }
+
+    .age,
+    .experience,
+    .kidsAgeCont,
+    .charactersCont,
+    .educationCont {
+        padding: 3px 6px;
+        font-size: 12px;
+    }
+
+    .description {
+        font-size: 0.8rem;
+        margin-bottom: 8px;
+    }
+
+    .moreLink {
+        font-size: 0.8rem;
+    }
+
+    .reviewItem {
+        gap: 8px;
+    }
+
+    .mainReviewCont {
+        margin-top: 20px;
+    }
+
+    .mainReviewCont button {
+        width: 130px;
+        font-size: 0.75rem;
+        padding: 5px 12px;
+    }
+
+    .heartIcon {
+        width: 18px;
+        height: 18px;
+    }
+}
