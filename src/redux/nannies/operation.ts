@@ -82,7 +82,6 @@ export const getNannies = createAsyncThunk(
           lastKey: newLastKey,
         };
       } else {
-        console.log("Нет данных в базе");
         return { data: [], lastKey: null };
       }
     } catch (error) {
